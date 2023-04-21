@@ -4,21 +4,21 @@ const dateFormat = require('../utils/dateFormat');
 const requestSchema = new Schema({
   requestItem: {
     type: String,
-    required: true,
+    required: 'What item do you need?',
     minlength: 1,
     maxlength: 100,
     trim: true,
   },
   requestDescription: {
     type: String,
-    required: true,
+    required: 'Please provide a detailed description of the item.',
     minlength: 1,
     maxlength: 500,
     trim: true,
   },
   location: {
     type: String,
-    required: true,
+    required: 'Please provide the city+state or zipcode of your location.',
     minlength: 1,
     maxlength: 100,
   },
