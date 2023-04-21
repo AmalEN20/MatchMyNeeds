@@ -15,6 +15,7 @@ import MyRequests from './pages/MyRequests';
 import MyToDos from './pages/MyToDos';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import NavTab from './components/NavTabs';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -45,7 +46,7 @@ function App() {
       <Router>
         <Header />
         <div>
-            <Nav />
+            <NavTab />
             <Routes>
               <Route
                 path="/"
@@ -67,10 +68,10 @@ function App() {
                 path="/logout"
                 element={<Logout />}
               />
-              <Route
+              {/* <Route
                 path="*"
                 element={<NoMatch />}
-              />
+              /> */}
             </Routes>
             <Footer />
         </div>
