@@ -1,23 +1,30 @@
 import { gql } from '@apollo/client';
 
-export const ADD_PROFILE = gql`
-  mutation addProfile($name: String!, $email: String!, $password: String!) {
-    addProfile(name: $name, email: $email, password: $password) {
+export const ADD_USER = gql`
+  mutation addUser($username: String!, $email: String!, $password: String!) {
+    addUser(username: $username, email: $email, password: $password) {
       token
-      profile {
+      user {
         _id
-        name
+        username
       }
     }
   }
 `;
 
-export const ADD_SKILL = gql`
-  mutation addSkill($profileId: ID!, $skill: String!) {
-    addSkill(profileId: $profileId, skill: $skill) {
+export const ADD_REQUEST = gql`
+  mutation addRequest($requestItem: String!, $requestDescription: String!, $location: String!) {
+    addRequest(requestItem: $requestItem, requestDescription:  $requestDescription, location: $location) {
       _id
-      name
-      skills
+      requestItem
+      requestDescription
+      location
+      requestBy
+      postedOn
+      comments {
+        _id
+        commentText
+      }
     }
   }
 `;
@@ -28,18 +35,73 @@ export const LOGIN_USER = gql`
       token
       profile {
         _id
-        name
+        username
       }
     }
   }
 `;
 
-export const REMOVE_SKILL = gql`
-  mutation removeSkill($skill: String!) {
-    removeSkill(skill: $skill) {
+export const UPDATE_REQUEST = gql`
+  mutation updateRequest($requestId: String!) {
+    updateRequest(requestId: $requestId) {
       _id
-      name
-      skills
+      requestItem
+      requestDescription
+      location
+    }
+  }
+`;
+
+export const REMOVE_REQUEST = gql`
+  mutation removeRequest($requestId: String!) {
+    removeRequest(requestId: $requestId) {
+      _id
+    }
+  }
+`;
+
+export const ADD_COMMENT = gql`
+  mutation addComment($requestId: String!, $commentText: String!) {
+    addComment(requestId: $requestId, commentText: $commentText) {
+      _id
+      requestItem
+      requestDescription
+      location
+      requestBy
+      postedOn
+      comments {
+        _id
+        commentText
+        commentBy
+        postedOn
+      }
+    }
+  }
+`;
+
+export const UPDATE_COMMENT = gql`
+  mutation updateComment($commentId: String!, $commentText: String!) {
+    updateComment(commentId: $commentId, commentText: $commentText) {
+      _id
+      requestItem
+      requestDescription
+      location
+      requestBy
+      postedOn
+      comments {
+        _id
+        commentText
+        commentBy
+        postedOn
+      }
+    }
+  }
+`;
+
+export const REMOVE_COMMENT = gql`
+  mutation removeComment($commentId: String!) {
+    removeComment(commentId: $commentId) {
+      _id
     }
   }
 `;
