@@ -75,11 +75,11 @@ const typeDefs = gql`
     ): Request
     removeRequest(
       requestId: ID!
-    ): Thought
+    ): Request
     removeComment(
       requestId: ID!
       commentId: ID!
-    ): Thought
+    ): Request
   }
 `;
 
