@@ -4,7 +4,7 @@ const dateFormat = require('../utils/dateFormat');
 const requestSchema = new Schema({
   requestItem: {
     type: String,
-    required: 'You need to leave a thought!',
+    required: true,
     minlength: 1,
     maxlength: 100,
     trim: true,
