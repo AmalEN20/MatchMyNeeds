@@ -1,15 +1,31 @@
 const db = require('../config/connection');
-const { Profile } = require('../models');
-const profileSeeds = require('./profileSeeds.json');
+const { User, Request } = require('../models');
+const userSeeds = require('./userSeeds.json');
+const requestSeeds = require('./RequestSeeds.json');
 
 db.once('open', async () => {
   try {
-    await Profile.deleteMany({});
-    await Profile.create(profileSeeds);
+    await Request.deleteMany({});
+    await User.deleteMany({});
 
-    console.log('all done!');
-    process.exit(0);
+    await User.create(userSeeds);
+
+    for (let i = 0; i < requestSeeds.length; i++) {
+      const { _id, requestBy } = await Request.create(requestSeeds[i]);
+      const user = await User.findOneAndUpdate(
+        { username: requestBy },
+        {
+          $addToSet: {
+            requests: _id,
+          },
+        }
+      );
+    }
   } catch (err) {
-    throw err;
+    console.error(err);
+    process.exit(1);
   }
+
+  console.log('all done!');
+  process.exit(0);
 });

@@ -29,7 +29,6 @@ const resolvers = {
     }
   },
 
-  //  addComment, updateComment, removeComment
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
       const user = await User.create({ username, email, password });
@@ -128,15 +127,15 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
   
-    // updateComment: async (parent, { commentId, commentText }) => {
-    //   if (context.user) {
-    //   return Thought.findByIdAndUpdate(
-    //     {_id: requestId},
-    //     {requestItem, requestDescription, location},
-    //     {new: true}
-    //   )}
-    //   throw new AuthenticationError('You need to be logged in!');
-    // },
+    updateComment: async (parent, { commentId, commentText }) => {
+      if (context.user) {
+      return Request.findByIdAndUpdate(
+        {_id: commentId},
+        {commentText},
+        {new: true}
+      )}
+      throw new AuthenticationError('You need to be logged in!');
+    },
 
     removeComment: async (parent, { requestId, commentId }, context) => {
       if (context.user) {
