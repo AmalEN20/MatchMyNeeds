@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Profile } = require('../models');
+const { User, Request } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -29,39 +29,94 @@ const resolvers = {
     }
   },
 
-  // addUser, login, updateUser, addRequest, updateRequest, addComment, updateComment, removeRequest, removeComment
   Mutation: {
-    addProfile: async (parent, { name, email, password }) => {
-      const profile = await Profile.create({ name, email, password });
-      const token = signToken(profile);
+    addUser: async (parent, { username, email, password }) => {
+      const user = await User.create({ username, email, password });
+      const token = signToken(user);
 
-      return { token, profile };
+      return { token, user };
     },
     login: async (parent, { email, password }) => {
-      const profile = await Profile.findOne({ email });
+      const user = await User.findOne({ email });
 
-      if (!profile) {
+      if (!user) {
         throw new AuthenticationError('No profile with this email found!');
       }
 
-      const correctPw = await profile.isCorrectPassword(password);
+      const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
         throw new AuthenticationError('Incorrect password!');
       }
 
-      const token = signToken(profile);
-      return { token, profile };
+      const token = signToken(user);
+      return { token, user };
     },
 
-    // Add a third argument to the resolver to access data in our `context`
-    addSkill: async (parent, { profileId, skill }, context) => {
-      // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
+    updateUser: async (parent, args, context) => {
       if (context.user) {
-        return Profile.findOneAndUpdate(
-          { _id: profileId },
+        return User.findByIdAndUpdate(context.user.id, args, {
+          new: true,
+        });
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
+
+
+    addRequest: async (parent, { requestItem, requestDescription, location }, context) => {
+      if (context.user) {
+        const request = await Request.create({
+          requestItem,
+          requestDescription,
+          location,
+          requestBy: context.user.username,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { requests: request._id } }
+        );
+
+        return request;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
+    updateRequest: async (parent, { requestId, requestItem, requestDescription, location, }) => {
+      if (context.user) {
+      return Request.findByIdAndUpdate(
+        {_id: requestId},
+        {requestItem, requestDescription, location},
+        {new: true}
+      )}
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
+    removeRequest: async (parent, { requestId }, context) => {
+      if (context.user) {
+        const request = await Request.findOneAndDelete({
+          _id: requestId,
+          requestBy: context.user.username,
+        });
+        
+        await User.findByIdAndUpdate(
+          { _id: context.user._id},
+          { $pull: { requests: request._id}}
+        );
+        return request;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+  
+    addComment: async (parent, { requestId, commentText }, context) => {
+      if (context.user) {
+        return Request.findOneAndUpdate(
+          { _id: requestId },
           {
-            $addToSet: { skills: skill },
+            $addToSet: {
+              comments: { commentText, commentBy: context.user.username },
+            },
           },
           {
             new: true,
@@ -69,28 +124,37 @@ const resolvers = {
           }
         );
       }
-      // If user attempts to execute this mutation and isn't logged in, throw an error
       throw new AuthenticationError('You need to be logged in!');
     },
-    // Set up mutation so a logged in user can only remove their profile and no one else's
-    removeProfile: async (parent, args, context) => {
+  
+    updateComment: async (parent, { commentId, commentText }) => {
       if (context.user) {
-        return Profile.findOneAndDelete({ _id: context.user._id });
-      }
+      return Request.findByIdAndUpdate(
+        {_id: commentId},
+        {commentText},
+        {new: true}
+      )}
       throw new AuthenticationError('You need to be logged in!');
     },
-    // Make it so a logged in user can only remove a skill from their own profile
-    removeSkill: async (parent, { skill }, context) => {
+
+    removeComment: async (parent, { requestId, commentId }, context) => {
       if (context.user) {
-        return Profile.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { skills: skill } },
+        return Request.findOneAndUpdate(
+          { _id: requestId },
+          {
+            $pull: {
+              comments: {
+                _id: commentId,
+                commentBy: context.user.username,
+              },
+            },
+          },
           { new: true }
         );
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-  },
-};
+  
+  }};
 
 module.exports = resolvers;
