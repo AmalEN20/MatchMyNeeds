@@ -13,7 +13,6 @@ import Login from './pages/Login';
 import Logout from './pages/Logout';
 import MyRequests from './pages/MyRequests';
 import MyToDos from './pages/MyToDos';
-import Signup from './pages/Signup';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -55,10 +54,6 @@ function App() {
               <Route
                 path="/login"
                 element={<Login />}
-              />
-              <Route
-                path="/signup"
-                element={<Signup />}
               />
               <Route
                 path="/myrequests"
