@@ -4,22 +4,32 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    profiles: async () => {
-      return Profile.find();
+    users: async () => {
+      return User.find().populate('requests');
     },
 
-    profile: async (parent, { profileId }) => {
-      return Profile.findOne({ _id: profileId });
+    user: async (parent, { username }) => {
+      return User.findOne({ username }).populate('requests');
     },
     // By adding context to our query, we can retrieve the logged in user without specifically searching for them
     me: async (parent, args, context) => {
       if (context.user) {
-        return Profile.findOne({ _id: context.user._id });
+        return User.findOne({ _id: context.user._id }).populate('requests');
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+
+    requests: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return Request.find(params).sort({ postedOn: -1 });
+    },
+
+    request: async (parent, { requestId }) => {
+      return Request.findOne({ _id: requestId })
+    }
   },
 
+  // addUser, login, updateUser, addRequest, updateRequest, addComment, updateComment, removeRequest, removeComment
   Mutation: {
     addProfile: async (parent, { name, email, password }) => {
       const profile = await Profile.create({ name, email, password });
