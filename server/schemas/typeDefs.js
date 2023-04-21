@@ -1,33 +1,85 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type Profile {
+  type User {
     _id: ID
-    name: String
+    username: String
     email: String
     password: String
-    skills: [String]!
+    requests: [Request]
+  }
+
+  type Request {
+    _id: ID
+    requestItem: String
+    requestDescription: String
+    location: String
+    requestBy: String
+    postedOn: String
+    comments: [Comment]
+  }
+
+  type Comment {
+    id: ID
+    commentText: String
+    commentBy: String
+    postedOn: String
   }
 
   type Auth {
     token: ID!
-    profile: Profile
+    user: User
   }
 
   type Query {
-    profiles: [Profile]!
-    profile(profileId: ID!): Profile
-    # Because we have the context functionality in place to check a JWT and decode its data, we can use a query that will always find and return the logged in user's data
-    me: Profile
+    users: [User]!
+    user(username: String!): User
+    requests(username: String): [Request]
+    request(requestId: ID!): Request
+    me: User
   }
 
   type Mutation {
-    addProfile(name: String!, email: String!, password: String!): Auth
-    login(email: String!, password: String!): Auth
-
-    addSkill(profileId: ID!, skill: String!): Profile
-    removeProfile: Profile
-    removeSkill(skill: String!): Profile
+    addUser(
+      username: String!
+      email: String!
+      password: String!
+    ): Auth
+    login(
+      email: String!
+      password: String!
+    ): Auth
+    updateUser(
+      username: String
+      email: String
+      password: String
+    ): User
+    addRequest(
+      requestItem: String!
+      requestDescription: String!
+      location: String!
+    ): Request
+    updateRequest(
+      requestId: ID!
+      requestItem: String
+      requestDescription: String
+      location: String
+    ): Request
+    addComment(
+      requestId: ID!
+      commentText: String!
+    ): Request
+    updateComment(
+      commentId: ID!
+      commentText: String!
+    ): Request
+    removeRequest(
+      requestId: ID!
+    ): Thought
+    removeComment(
+      requestId: ID!
+      commentId: ID!
+    ): Thought
   }
 `;
 
