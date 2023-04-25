@@ -32,6 +32,11 @@ const requestSchema = new Schema({
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
+  reserved: {
+    type: Boolean,
+    required: true,
+    default: false
+  },
   fulfilled: {
     type: Boolean,
     required: true,
