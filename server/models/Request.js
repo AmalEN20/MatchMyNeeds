@@ -32,6 +32,11 @@ const requestSchema = new Schema({
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
+  fulfilled: {
+    type: Boolean,
+    required: true,
+    default: false
+  },
   comments: [
     {
       commentText: {
