@@ -44,7 +44,7 @@ export default function SignUp() {
                           
                         </Components.Paragraph>
                             <Components.GhostButton onClick={() => toggle(false)}>
-                                Sigin Up
+                                Sign Up
                             </Components.GhostButton> 
                       </Components.RightOverlayPanel>
   
