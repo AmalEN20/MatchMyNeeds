@@ -16,6 +16,7 @@ const typeDefs = gql`
     location: String
     requestBy: String
     postedOn: String
+    fulfilled: Boolean
     comments: [Comment]
   }
 
@@ -64,6 +65,7 @@ const typeDefs = gql`
       requestItem: String
       requestDescription: String
       location: String
+      fulfilled: Boolean
     ): Request
     addComment(
       requestId: ID!
