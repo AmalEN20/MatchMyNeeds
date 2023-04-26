@@ -9,14 +9,25 @@ import { ADD_REQUEST } from '../../utils/mutations';
 const RequestForm = ({ requestItem }) => {
   const [request, setRequest] = useState('');
 
-  const [addSkill, { error }] = useMutation(ADD_REQUEST);
+  const [addRequest, { error }] = useMutation(ADD_REQUEST);
   
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-export default function Request() {
+    try {
+      const data = await addRequest({
+        variables: { requestItem, requestDescription },
+      });
+
+      addRequest('');
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
-  <div> <h1 className='request'>My Requests</h1>
+  <div> 
+    <h1 className='request'> What are you looking for? </h1>
 
   <h2>Add a request</h2>
 
@@ -34,3 +45,5 @@ export default function Request() {
   </div>
   );
 }
+
+export default Request;
