@@ -119,4 +119,4 @@ export default function SignUp(props) {
       </Components.Container>
     </div>
   );
-}g
+}

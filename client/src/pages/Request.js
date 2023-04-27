@@ -29,7 +29,7 @@ const RequestForm = ({ requestItem, requestDescription  }) => {
     <div>
       <h1 className='request'> What are you looking for? </h1>
 
-      {Auth.loggedIn() ? (
+      {/* {Auth.loggedIn() ? ( */}
         <form
           className="flex-row justify-center justify-space-between-md align-center"
           onSubmit={handleFormSubmit}>
@@ -63,7 +63,7 @@ const RequestForm = ({ requestItem, requestDescription  }) => {
       ) : (
         <p>
           You need to be logged in to add a request. Please{' '}
-          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
+          <Link to="/signup">login</Link>
         </p>
       )}
     </div>
