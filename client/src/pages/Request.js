@@ -63,7 +63,7 @@ const RequestForm = ({ requestItem, requestDescription  }) => {
       ) : (
         <p>
           You need to be logged in to add a request. Please{' '}
-          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
+          <Link to="/signup">login.</Link>
         </p>
       )}
     </div>
