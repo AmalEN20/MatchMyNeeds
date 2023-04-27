@@ -1,10 +1,15 @@
 import React from "react";
-import { useParams, Navigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { BrowserRouter as Navigate } from "react-router-dom";
 import { useQuery } from "@apollo/client";
+
 import "../../src/App.css";
+
 import Auth from "../../src/utils/auth";
+
 import AllRequests from "../components/AllRequests";
-import RequestForm from "../components/RequestForm";
+import RequestForm from "../components/RequestForm/index";
+
 import { QUERY_ME, QUERY_USER } from "../utils/queries";
 
 const MyRequests = () => {
@@ -35,20 +40,21 @@ const MyRequests = () => {
   return (
     <div>
       <div>
-        <h1 className="request">
-          Viewing {userParam ? `${user.username}'s` : "your"} profile.
-        </h1>
-      </div>
-      <div>
-        <AllRequests
-        requests={user.requests}
-        />
-      </div>
-      {!userParam && (
         <div>
-          <RequestForm />
+          <h1 className="request">
+            Viewing {userParam ? `${user.username}'s` : "your"} profile.
+          </h1>
         </div>
-      )}
+        <div>
+          <AllRequests requests={user.requests} />
+        </div>
+        <h3>display</h3>
+        {!userParam && (
+          <div>
+            <RequestForm />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
