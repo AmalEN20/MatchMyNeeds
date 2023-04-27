@@ -32,11 +32,11 @@ export default function SignUp(props) {
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
     try {
-      const {data} = await loginUser({
-        variables: { ...formState },
+      const [mutationResponse] = await loginUser({
+        variables: { email: formState.email, password: formState.password },
       });
-
-      Auth.login(data.loginUser.token);
+      const token = mutationResponse.data.login.token;
+      Auth.login(token);
     } catch (e) {
       console.log(e);
     }
