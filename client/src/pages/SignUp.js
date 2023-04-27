@@ -12,6 +12,7 @@ export default function SignUp(props) {
     email: "",
     password: "",
   });
+  
   const [addUser] = useMutation(ADD_USER);
   const [loginUser] = useMutation(LOGIN_USER);
 

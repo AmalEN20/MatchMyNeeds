@@ -9,9 +9,9 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Todo from './pages/Todo';
-import Request from './pages/Request';
+import MyRequests from './pages/Request';
 import SignUp from './pages/SignUp';
 import Footer from '../src/components/Footer/Footer';
 
@@ -42,13 +42,13 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <Navbar />
-        <Switch>
-          <Route path='/' exact component={Home} />
-          <Route path='/me/todo' component={Todo} />
-          <Route path='/me/request' component={Request} />
-          <Route path='/signup' component={SignUp} />
+        <Routes>
+          <Route path='/' element={<Home/>} />
+          <Route path='/todo/me' element={<Todo/>} />
+          <Route path='/request/me' element={<MyRequests/>} />
+          <Route path='/signup' element={<SignUp/>} />
           {/* <Route path='/requests/:requestId' component={SingleRequest}/> */}
-        </Switch>
+        </Routes>
         <Footer />
       </Router>
     </ApolloProvider>
