@@ -1,9 +1,11 @@
 import React from 'react';
 import * as Components from '../components/CssForSN/Components/Components';
 
-export default function SignUp() {
+export default function SignUp() { 
   const [signIn, toggle] = React.useState(true);
       return(
+        <div className='hero-container'> 
+          <img src='/back/back4.jpeg'/>
           <Components.Container>
               <Components.SignUpContainer signinIn={signIn}>
                   <Components.Form>
@@ -52,5 +54,7 @@ export default function SignUp() {
               </Components.OverlayContainer>
 
           </Components.Container>
+          </div>
+          
       );
  }

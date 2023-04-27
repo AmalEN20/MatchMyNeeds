@@ -12,7 +12,7 @@ min-height: 400px;
 display: block;
 margin-left: auto;
 margin-right: auto;
-margin-top: 100px;
+margin-top: -250px;
 `;
 
 export const SignUpContainer = styled.div`
@@ -29,6 +29,7 @@ export const SignUpContainer = styled.div`
    opacity: 1;
    z-index: 5;
  ` 
+ 
  : null}
 `;
 
@@ -66,6 +67,7 @@ border: none;
 padding: 12px 15px;
 margin: 8px 0;
 width: 100%;
+
 `;
 
 
@@ -98,6 +100,7 @@ color: #333;
 font-size: 14px;
 text-decoration: none;
 margin: 15px 0;
+
 `;
 export const OverlayContainer = styled.div`
 position: absolute;
