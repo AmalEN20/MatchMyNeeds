@@ -70,4 +70,4 @@ const RequestForm = ({ requestItem, requestDescription  }) => {
   );
 };
 
-export default Request;
+export default RequestForm;
