@@ -29,7 +29,9 @@
     margin-bottom: 24px;
     font-size: 24px;
   }
-  
+  h3{
+    text-align: left;
+  }
   .footer-subscription-text {
     margin-bottom: 24px;
     font-size: 20px;
@@ -48,9 +50,9 @@
   
   .footer-links {
     width: 100%;
-    max-width: 1000px;
+    max-width: 100px;
     display: flex;
-    justify-content: center;
+    justify-content: left;
   }
   
   .footer-link-wrapper {

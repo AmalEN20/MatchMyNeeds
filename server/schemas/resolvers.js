@@ -83,11 +83,11 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
 
-    updateRequest: async (parent, { requestId, requestItem, requestDescription, location, }) => {
+    updateRequest: async (parent, { requestId, requestItem, requestDescription, location, reserved, fulfilled }) => {
       if (context.user) {
       return Request.findByIdAndUpdate(
         {_id: requestId},
-        {requestItem, requestDescription, location},
+        {requestItem, requestDescription, location, reserved, fulfilled},
         {new: true}
       )}
       throw new AuthenticationError('You need to be logged in!');

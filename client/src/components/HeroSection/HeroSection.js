@@ -9,7 +9,6 @@ function HeroSection() {
       
       <img src='/back/back4.jpeg'/>
       <h1>MatchMyNeeds</h1>
-      <p>Description</p>
       <div className='hero-btns'>
         <Button
           className='btns'

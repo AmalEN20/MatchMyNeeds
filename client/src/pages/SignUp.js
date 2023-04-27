@@ -1,11 +1,11 @@
-import React from 'react';
-import * as Components from '../components/CssForSN/Components/Components';
+import React from "react";
+import * as Components from "../components/CssForSN/Components/Components";
 
 export default function SignUp() { 
   const [signIn, toggle] = React.useState(true);
       return(
         <div className='hero-container'> 
-          <img src='/back/back4.jpeg'/>
+        <img src='/back/back4.jpeg'/>
           <Components.Container>
               <Components.SignUpContainer signinIn={signIn}>
                   <Components.Form>
@@ -17,28 +17,24 @@ export default function SignUp() {
                   </Components.Form>
               </Components.SignUpContainer>
 
-              <Components.SignInContainer signinIn={signIn}>
-                   <Components.Form>
-                       <Components.Title>Sign in</Components.Title>
-                       <Components.Input type='email' placeholder='Email' />
-                       <Components.Input type='password' placeholder='Password' />
-                       <Components.Anchor href='#'>Forgot your password?</Components.Anchor>
-                       <Components.Button>Sigin In</Components.Button>
-                   </Components.Form>
-              </Components.SignInContainer>
+      <Components.SignInContainer signinIn={signIn}>
+        <Components.Form>
+          <Components.Title>Sign in</Components.Title>
+          <Components.Input type="email" placeholder="Email" />
+          <Components.Input type="password" placeholder="Password" />
+          <Components.Button>Sign In</Components.Button>
+        </Components.Form>
+      </Components.SignInContainer>
 
-              <Components.OverlayContainer signinIn={signIn}>
-                  <Components.Overlay signinIn={signIn}>
-
-                  <Components.LeftOverlayPanel signinIn={signIn}>
-                      <Components.Title>Hello, Friend! </Components.Title>
-                      <Components.Paragraph>
-                        
-                      </Components.Paragraph>
-                      <Components.GhostButton onClick={() => toggle(true)}>
-                          Sign In
-                      </Components.GhostButton>
-                      </Components.LeftOverlayPanel>
+      <Components.OverlayContainer signinIn={signIn}>
+        <Components.Overlay signinIn={signIn}>
+          <Components.LeftOverlayPanel signinIn={signIn}>
+            <Components.Title>Hello, Friend! </Components.Title>
+            <Components.Paragraph></Components.Paragraph>
+            <Components.GhostButton onClick={() => toggle(true)}>
+              Sign In
+            </Components.GhostButton>
+          </Components.LeftOverlayPanel>
 
                       <Components.RightOverlayPanel signinIn={signIn}>
                         <Components.Title>Welcome Back!</Components.Title>
@@ -55,6 +51,5 @@ export default function SignUp() {
 
           </Components.Container>
           </div>
-          
       );
  }
