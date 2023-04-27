@@ -7,7 +7,7 @@ function HeroSection() {
   return (
     <div className='hero-container'>
       
-      <img src='/back/back4.jpeg'/>
+      <img src='/back/back4.jpeg' alt='backimg'/>
       <h1>MatchMyNeeds</h1>
       <div className='hero-btns'>
         <Button
