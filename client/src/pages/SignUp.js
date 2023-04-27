@@ -17,7 +17,7 @@ export default function SignUp(props) {
 
   const handleSignUpSubmit = async (event) => {
     event.preventDefault();
-    console.log('FORMDATA: ', formState)
+    console.log('FORMDATA: ', formState);
     const mutationResponse = await addUser({
       variables: {
         email: formState.email,
@@ -32,11 +32,11 @@ export default function SignUp(props) {
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
     try {
-      const mutationResponse = await loginUser({
-        variables: { email: formState.email, password: formState.password },
+      const {data} = await loginUser({
+        variables: { ...formState },
       });
-      const token = mutationResponse.data.login.token;
-      Auth.login(token);
+
+      Auth.login(data.loginUser.token);
     } catch (e) {
       console.log(e);
     }
