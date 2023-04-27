@@ -19,7 +19,7 @@ const RequestForm = ({ requestItem, requestDescription  }) => {
         variables: { requestItem, requestDescription },
       });
 
-      addRequest('');
+      setRequest('');
     } catch (err) {
       console.error(err);
     }
@@ -34,12 +34,14 @@ const RequestForm = ({ requestItem, requestDescription  }) => {
           className="flex-row justify-center justify-space-between-md align-center"
           onSubmit={handleFormSubmit}>
           <div className="col-12 col-lg-9">
+          <label> <h3> Requested Item: </h3> </label>
             <input
               placeholder="Type your request here."
               value={ requestItem }
               className="form-input w-100"
               onChange={(event) => setRequest(event.target.value)}
             />
+            <label> <h3> Description of Item: </h3>  </label>
             <input
               placeholder="Type the description here."
               value={ requestDescription }
@@ -49,10 +51,9 @@ const RequestForm = ({ requestItem, requestDescription  }) => {
           </div>
 
           <div className="col-12 col-lg-3">
-            <button className="btn btn-info btn-block py-3" type="submit">
+            <button onClick={handleFormSubmit} className="btn btn-info btn-block py-3" type="submit">
               Submit
             </button>
-            <label> <input type="checkbox" /> Saved to My To-Dos</label>
           </div>
           {error && (
             <div className="col-12 my-3 bg-danger text-white p-3">
@@ -68,6 +69,5 @@ const RequestForm = ({ requestItem, requestDescription  }) => {
       )}
     </div>
   );
-};
-
+      }; 
 export default RequestForm;

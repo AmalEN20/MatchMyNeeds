@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
+import '../../src/App.css';
 
-import { ADD_REQUEST } from '../../utils/mutations';
+import { ADD_REQUEST } from '../../src/utils/mutations';
+import Auth from '../../src/utils/auth';
 
-import Auth from '../../utils/auth';
-
-const RequestForm = ({ userId }) => {
+const RequestForm = ({ requestItem, requestDescription  }) => {
   const [request, setRequest] = useState('');
 
   const [addRequest, { error }] = useMutation(ADD_REQUEST);
@@ -16,7 +16,7 @@ const RequestForm = ({ userId }) => {
 
     try {
       const data = await addRequest({
-        variables: { userId, request },
+        variables: { requestItem, requestDescription, location },
       });
 
       setRequest('');
@@ -27,25 +27,32 @@ const RequestForm = ({ userId }) => {
 
   return (
     <div>
-      <h4>Please submit your request below.</h4>
+      <h1 className='request'> What are you looking for? </h1>
 
       {Auth.loggedIn() ? (
         <form
           className="flex-row justify-center justify-space-between-md align-center"
-          onSubmit={handleFormSubmit}
-        >
+          onSubmit={handleFormSubmit}>
           <div className="col-12 col-lg-9">
+          <label> <h3> Requested Item: </h3> </label>
             <input
-              placeholder="Endorse some skills..."
-              value={request}
+              placeholder="Type your request here."
+              value={ requestItem }
+              className="form-input w-100"
+              onChange={(event) => setRequest(event.target.value)}
+            />
+            <label> <h3> Description of Item: </h3>  </label>
+            <input
+              placeholder="Type the description here."
+              value={ requestDescription }
               className="form-input w-100"
               onChange={(event) => setRequest(event.target.value)}
             />
           </div>
 
           <div className="col-12 col-lg-3">
-            <button className="btn btn-info btn-block py-3" type="submit">
-              Submit Request
+            <button onClick={handleFormSubmit} className="btn btn-info btn-block py-3" type="submit">
+              Submit
             </button>
           </div>
           {error && (
@@ -56,12 +63,11 @@ const RequestForm = ({ userId }) => {
         </form>
       ) : (
         <p>
-          You need to be logged in to submit request. Please{' '}
-          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
+          You need to be logged in to add a request. Please{' '}
+          <Link to="/signup">login.</Link>
         </p>
       )}
     </div>
   );
-};
-
+      }; 
 export default RequestForm;
