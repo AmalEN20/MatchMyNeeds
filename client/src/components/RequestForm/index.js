@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import '../../src/App.css';
+import '../../App.css';
 
-import { ADD_REQUEST } from '../../src/utils/mutations';
-import Auth from '../../src/utils/auth';
+import { ADD_REQUEST } from '../../utils/mutations';
+import Auth from '../../utils/auth';
 
 const RequestForm = ({ requestItem, requestDescription  }) => {
   const [request, setRequest] = useState('');
@@ -16,7 +16,7 @@ const RequestForm = ({ requestItem, requestDescription  }) => {
 
     try {
       const data = await addRequest({
-        variables: { requestItem, requestDescription, location },
+        variables: { requestItem, requestDescription },
       });
 
       setRequest('');

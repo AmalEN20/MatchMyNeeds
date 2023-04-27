@@ -21,6 +21,8 @@ export const ADD_REQUEST = gql`
       location
       requestBy
       postedOn
+      reserved
+      fulfilled
       comments {
         _id
         commentText
@@ -33,7 +35,7 @@ export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       token
-      profile {
+      user {
         _id
         username
       }
@@ -48,6 +50,8 @@ export const UPDATE_REQUEST = gql`
       requestItem
       requestDescription
       location
+      reserved
+      fulfilled
     }
   }
 `;
@@ -69,10 +73,12 @@ export const ADD_COMMENT = gql`
       location
       requestBy
       postedOn
+      reserved
+      fulfilled
       comments {
         _id
         commentText
-        commentBy
+        commentedBy
         postedOn
       }
     }
@@ -88,10 +94,12 @@ export const UPDATE_COMMENT = gql`
       location
       requestBy
       postedOn
+      reserved
+      fulfilled
       comments {
         _id
         commentText
-        commentBy
+        commentedBy
         postedOn
       }
     }
