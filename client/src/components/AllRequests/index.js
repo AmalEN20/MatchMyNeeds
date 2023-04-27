@@ -2,22 +2,23 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const RequestPosts = ({requests}) => {
-  if (!requests.length) {
-    return <h3>No Requests Yet</h3>;
-  }
+
+if (!requests.length) {
+  return <h3>No Requests Yet</h3>
+}
 
   return (
     <div>
       {requests &&
         requests.map((request) => (
-          <div key={request._id} className="card mb-3">
-            <h4 className="card-header bg-primary text-light p-2 m-0">
-              Request Item: {request.requestItem}
-            </h4>
-            <div className="card-body bg-light p-2">
-              <p>{request.requestItem}</p>
-            </div>
+          <Link
+                  to={`/requests/${request._id}`}
+                >
+          <div>
+            <h4>Requested Item: {request.requestItem}</h4>
+            <h5>Description: {request.requestDescription}</h5>
           </div>
+          </Link>
         ))}
     </div>
   );
