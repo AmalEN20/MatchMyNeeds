@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const QUERY_REQUESTS = gql`
   query getAllRequests {
@@ -9,6 +9,8 @@ export const QUERY_REQUESTS = gql`
       location
       requestBy
       postedOn
+      reserved
+      fulfilled
     }
   }
 `;
@@ -22,10 +24,12 @@ export const QUERY_SINGLE_REQUEST = gql`
       location
       requestBy
       postedOn
+      reserved
+      fulfilled
       comments {
         _id
         commentText
-        commentBy
+        commentedBy
         PostedOn
       }
     }
@@ -44,10 +48,12 @@ export const QUERY_USER = gql`
         requestDescription
         location
         postedOn
+        reserved
+        fulfilled
       }
     }
   }
-`
+`;
 
 export const QUERY_ME = gql`
   query me {
@@ -61,6 +67,8 @@ export const QUERY_ME = gql`
         requestDescription
         location
         postedOn
+        reserved
+        fulfilled
       }
     }
   }

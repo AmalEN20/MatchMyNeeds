@@ -7,20 +7,22 @@ import "../../src/App.css";
 
 import Auth from "../../src/utils/auth";
 
-import AllRequests from "../components/AllRequests";
+import RequestPosts from "../components/AllRequests";
 import RequestForm from "../components/RequestForm/index";
 
 import { QUERY_ME, QUERY_USER } from "../utils/queries";
 
-const MyRequests = () => {
-  const { username: userParam } = useParams();
 
-  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-    variables: { username: userParam },
+const MyRequests = () => {
+  const { username } = useParams();
+
+  const { loading, data } = useQuery(username ? QUERY_USER : QUERY_ME, {
+    variables: { username: username },
   });
 
   const user = data?.me || data?.user || {};
-  if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+
+  if (Auth.loggedIn() && Auth.getProfile().data.username === username) {
     return <Navigate to="/request/me" />;
   }
 
@@ -42,20 +44,19 @@ const MyRequests = () => {
       <div>
         <div>
           <h1 className="request">
-            Viewing {userParam ? `${user.username}'s` : "your"} profile.
+            Viewing {username ? `${user.username}'s` : "your"} profile.
           </h1>
         </div>
         <div>
-          <AllRequests requests={user.requests} />
+          <RequestPosts requests={user.requests} />
         </div>
-        <h3>display</h3>
-        {!userParam && (
-          <div>
-            <RequestForm />
-          </div>
-        )}
+
+        <div>
+          <RequestForm />
+        </div>
       </div>
     </div>
   );
 };
+
 export default MyRequests;
