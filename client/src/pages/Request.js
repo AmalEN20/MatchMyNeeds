@@ -1,6 +1,5 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { BrowserRouter as Navigate } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
 import "../../src/App.css";
@@ -22,6 +21,19 @@ const MyRequests = () => {
 
   const user = data?.me || data?.user || {};
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!user?.username) {
+    return (
+      <h3>
+        You need to be logged in to see this. Use the navigation links above to
+        sign up or log in!
+      </h3>
+    );
+  }
+
   if (Auth.loggedIn() && Auth.getProfile().data.username === username) {
     console.log(user);
     return (
@@ -29,7 +41,7 @@ const MyRequests = () => {
       <div>
         <div>
           <h1 className="request">
-            Viewing {username ? `${user.username}'s` : "your"} profile.
+            Viewing {username ? `${user.username}'s` : "your"} requests.
           </h1>
         </div>
         <div>
@@ -42,19 +54,6 @@ const MyRequests = () => {
       </div>
     </div>
     )
-  }
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!user?.username) {
-    return (
-      <h3>
-        You need to be logged in to see this. Use the navigation links above to
-        sign up or log in!
-      </h3>
-    );
   }
 
 };
