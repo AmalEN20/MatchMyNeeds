@@ -1,6 +1,5 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { BrowserRouter as Navigate } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
 import "../../src/App.css";
@@ -22,10 +21,6 @@ const MyRequests = () => {
 
   const user = data?.me || data?.user || {};
 
-  if (Auth.loggedIn() && Auth.getProfile().data.username === username) {
-    return <Navigate to="/request/me" />;
-  }
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -39,17 +34,19 @@ const MyRequests = () => {
     );
   }
 
-  return (
-    <div>
+  if (Auth.loggedIn() && Auth.getProfile().data.username === username) {
+    console.log(user);
+    return (
       <div>
-        <div>
+      <div>
+        {/* <div>
           <h1 className="request">
-            Viewing {username ? `${user.username}'s` : "your"} profile.
+            Viewing {username ? `${user.username}'s` : "your"} requests.
           </h1>
         </div>
         <div>
           <RequestPosts requests={user.requests} />
-        </div>
+        </div> */}
 
       {Auth.loggedIn() ? (
         <form
@@ -95,7 +92,9 @@ const MyRequests = () => {
         </div>
       </div>
     </div>
-  );
+    )
+  }
+
 };
 
 export default MyRequests;

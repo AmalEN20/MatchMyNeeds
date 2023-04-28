@@ -14,7 +14,7 @@ export const ADD_USER = gql`
 
 export const ADD_REQUEST = gql`
   mutation addRequest($requestItem: String!, $requestDescription: String!, $location: String!) {
-    addRequest(requestItem: $requestItem, requestDescription:  $requestDescription, location: $location) {
+    addRequest(requestItem: $requestItem, requestDescription: $requestDescription, location: $location) {
       _id
       requestItem
       requestDescription
