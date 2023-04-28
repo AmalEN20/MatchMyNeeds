@@ -22,7 +22,7 @@ const typeDefs = gql`
   }
 
   type Comment {
-    id: ID
+    _id: ID
     commentText: String
     commentedBy: String
     postedOn: String
