@@ -65,13 +65,13 @@ const resolvers = {
     },
 
 
-    addRequest: async (parent, { requestItem, requestDescription, location }, context) => {
+    addRequest: async (parent, { requestItem, requestDescription, location, requestBy }, context) => {
       if (context.user) {
         const request = await Request.create({
           requestItem,
           requestDescription,
           location,
-          requestBy: context.user.username,
+          requestBy: context.user.email,
         });
 
         await User.findOneAndUpdate(

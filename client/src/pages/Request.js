@@ -34,7 +34,8 @@ const MyRequests = () => {
     );
   }
 
-  if (Auth.loggedIn() && Auth.getProfile().data.username === username) {
+  console.log(data);
+  if (Auth.loggedIn() && Auth.getProfile().data.email === data.me.email) {
     console.log(user);
     return (
       <div>

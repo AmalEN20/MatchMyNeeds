@@ -13,8 +13,8 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_REQUEST = gql`
-  mutation addRequest($requestItem: String!, $requestDescription: String!, $location: String!) {
-    addRequest(requestItem: $requestItem, requestDescription: $requestDescription, location: $location) {
+  mutation addRequest($requestItem: String!, $requestDescription: String!, $location: String!, $requestBy: String) {
+    addRequest(requestItem: $requestItem, requestDescription: $requestDescription, location: $location, requestBy: $requestBy) {
       _id
       requestItem
       requestDescription
