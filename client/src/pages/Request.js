@@ -23,24 +23,9 @@ const MyRequests = () => {
   const user = data?.me || data?.user || {};
 
   if (Auth.loggedIn() && Auth.getProfile().data.username === username) {
-    return <Navigate to="/request/me" />;
-  }
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!user?.username) {
+    console.log(user);
     return (
-      <h3>
-        You need to be logged in to see this. Use the navigation links above to
-        sign up or log in!
-      </h3>
-    );
-  }
-
-  return (
-    <div>
+      <div>
       <div>
         <div>
           <h1 className="request">
@@ -56,7 +41,22 @@ const MyRequests = () => {
         </div>
       </div>
     </div>
-  );
+    )
+  }
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!user?.username) {
+    return (
+      <h3>
+        You need to be logged in to see this. Use the navigation links above to
+        sign up or log in!
+      </h3>
+    );
+  }
+
 };
 
 export default MyRequests;
