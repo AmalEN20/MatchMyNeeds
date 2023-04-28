@@ -12,12 +12,13 @@ export default function SignUp(props) {
     email: "",
     password: "",
   });
+
   const [addUser] = useMutation(ADD_USER);
   const [loginUser] = useMutation(LOGIN_USER);
 
   const handleSignUpSubmit = async (event) => {
     event.preventDefault();
-    console.log('FORMDATA: ', formState);
+    console.log("FORMDATA: ", formState);
     const mutationResponse = await addUser({
       variables: {
         email: formState.email,
@@ -31,14 +32,15 @@ export default function SignUp(props) {
 
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
+    console.log("FORMDATA:", formState);
     try {
-      const [mutationResponse] = await loginUser({
+      const mutationResponse = await loginUser({
         variables: { email: formState.email, password: formState.password },
       });
       const token = mutationResponse.data.login.token;
       Auth.login(token);
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
     }
   };
 

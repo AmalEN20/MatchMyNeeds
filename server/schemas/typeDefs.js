@@ -24,7 +24,7 @@ const typeDefs = gql`
   type Comment {
     id: ID
     commentText: String
-    commentBy: String
+    commentedBy: String
     postedOn: String
   }
 

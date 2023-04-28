@@ -1,33 +1,55 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import '../../src/App.css';
+import React from "react";
+import { useParams } from "react-router-dom";
+import { BrowserRouter as Navigate } from "react-router-dom";
+import { useQuery } from "@apollo/client";
 
-import { ADD_REQUEST } from '../../src/utils/mutations';
-import Auth from '../../src/utils/auth';
+import "../../src/App.css";
 
-const RequestForm = ({ requestItem, requestDescription  }) => {
-  const [request, setRequest] = useState('');
+import Auth from "../../src/utils/auth";
 
-  const [addRequest, { error }] = useMutation(ADD_REQUEST);
+import RequestPosts from "../components/AllRequests";
+import RequestForm from "../components/RequestForm/index";
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
+import { QUERY_ME, QUERY_USER } from "../utils/queries";
 
-    try {
-      const data = await addRequest({
-        variables: { requestItem, requestDescription },
-      });
 
-      setRequest('');
-    } catch (err) {
-      console.error(err);
-    }
-  };
+const MyRequests = () => {
+  const { username } = useParams();
+
+  const { loading, data } = useQuery(username ? QUERY_USER : QUERY_ME, {
+    variables: { username: username },
+  });
+
+  const user = data?.me || data?.user || {};
+
+  if (Auth.loggedIn() && Auth.getProfile().data.username === username) {
+    return <Navigate to="/request/me" />;
+  }
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!user?.username) {
+    return (
+      <h3>
+        You need to be logged in to see this. Use the navigation links above to
+        sign up or log in!
+      </h3>
+    );
+  }
 
   return (
     <div>
-      <h1 className='request'> What are you looking for? </h1>
+      <div>
+        <div>
+          <h1 className="request">
+            Viewing {username ? `${user.username}'s` : "your"} profile.
+          </h1>
+        </div>
+        <div>
+          <RequestPosts requests={user.requests} />
+        </div>
 
       {Auth.loggedIn() ? (
         <form
@@ -68,7 +90,12 @@ const RequestForm = ({ requestItem, requestDescription  }) => {
           <Link to="/SingleRequest">Second Link.</Link>
         </p>
       )}
+        <div>
+          <RequestForm />
+        </div>
+      </div>
     </div>
   );
-      }; 
-export default RequestForm;
+};
+
+export default MyRequests;
