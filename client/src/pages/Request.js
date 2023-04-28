@@ -26,6 +26,8 @@ const RequestForm = ({ requestItem, requestDescription  }) => {
   };
 
   return (
+    <div className='hero-container'> 
+          <img src='/back/back4.jpeg'/>
     <div>
       <h1 className='request'> What are you looking for? </h1>
 
@@ -67,6 +69,8 @@ const RequestForm = ({ requestItem, requestDescription  }) => {
           <Link to="/signup">login.</Link>
         </p>
       )
+
+    </div>
     </div>
   );
       }; 
