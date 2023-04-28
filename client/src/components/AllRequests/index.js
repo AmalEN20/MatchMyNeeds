@@ -11,6 +11,7 @@ if (!requests.length) {
     <div>
       {requests &&
         requests.map((request) => (
+          <div key={request._id}>
           <Link
                   to={`/requests/${request._id}`}
                 >
@@ -19,6 +20,7 @@ if (!requests.length) {
             <h5>Description: {request.requestDescription}</h5>
           </div>
           </Link>
+          </div>
         ))}
     </div>
   );

@@ -11,9 +11,9 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Todo from './pages/Todo';
-import Request from './pages/Request';
 import SignUp from './pages/SignUp';
 import Footer from '../src/components/Footer/Footer';
+import MyRequests from './pages/Request';
 
 
 const httpLink = createHttpLink({
@@ -46,7 +46,6 @@ function App() {
           <Route path='/' exact component={Home} />
           <Route path='/me/todo' component={Todo} />
           <Route path='/me/request' component={Request} />
-
           <Route path='/signup' component={SignUp} />
           {/* <Route path='/requests/:requestId' component={SingleRequest}/> */}
         </Switch>

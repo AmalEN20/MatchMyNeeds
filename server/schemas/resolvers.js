@@ -41,7 +41,7 @@ const resolvers = {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError('No profile with this email found!');
+        throw new AuthenticationError('No user with this email found!');
       }
 
       const correctPw = await user.isCorrectPassword(password);
@@ -116,7 +116,7 @@ const resolvers = {
           { _id: requestId },
           {
             $addToSet: {
-              comments: { commentText, commentBy: context.user.username },
+              comments: { commentText, commentedBy: context.user.username },
             },
           },
           {
@@ -146,7 +146,7 @@ const resolvers = {
             $pull: {
               comments: {
                 _id: commentId,
-                commentBy: context.user.username,
+                commentedBy: context.user.username,
               },
             },
           },
