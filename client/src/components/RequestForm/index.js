@@ -136,8 +136,10 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_REQUEST } from '../../utils/mutations';
 import Auth from '../../utils/auth';
+import { QUERY_REQUESTS, QUERY_ME } from '../../utils/queries';
 
 const RequestForm = () => {
+<<<<<<< HEAD
   const [requestItem, setRequestItem] = useState('');
   const [requestDescription, setRequestDescription] = useState('');
   const [location, setLocation] = useState('');
@@ -155,6 +157,59 @@ const RequestForm = () => {
       await addRequest({
         variables: { requestItem, requestDescription, location },
       });
+=======
+  
+  const [ item, setItem ] = useState('');
+  const [ description, setDescription] = useState('');
+  const [ location, setLocation ] = useState('');
+
+  //Invoke 'useMutation()' hook to return a promise-based function and data about the ADD_REQUEST
+  const [addRequest, { error }] = useMutation(ADD_REQUEST, {
+    update(cache, { data: { addRequest } }) {
+      try {
+        const { requests } = cache.readQuery({ query: QUERY_REQUESTS });
+
+        cache.writeQuery({
+          query: QUERY_REQUESTS,
+          data: { requests: [addRequest, ...requests] },
+        });
+      } catch (e) {
+        console.error(e);
+      }
+
+      // update me object's cache
+      // const { me } = cache.readQuery({ query: QUERY_ME });
+      // cache.writeQuery({
+      //   query: QUERY_ME,
+      //   data: { me: { ...me, requests: [...me.requests, addRequest] } },
+      // });
+    },
+  });
+ 
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    console.log(item);
+    console.log(location);
+    console.log(description);
+    console.log(Auth.getProfile().data.email);
+    //Since mutation function is async, wrap in try...catch to catch any network error
+    try {
+      //Execute mutation and pass in defined parameter data as variables
+      const data = await addRequest({
+        variables: { 
+          requestItem: item,
+          requestDescription: description,
+          location: location,
+          requestBy: Auth.getProfile().data.email,
+        },
+      });
+
+      setItem('');
+      setDescription('');
+      setLocation('');
+>>>>>>> main
     } catch (err) {
       console.error(err);
     }
@@ -228,24 +283,24 @@ const RequestForm = () => {
           <input
             placeholder="Type your request."
             type="text"
-            value={request.requestItem}
-            onChange={(event) => setRequest(event.target.value)}
+            value={item}
+            onChange={(event) => setItem(event.target.value)}
             style={{ width: "100%", padding: "10px", border: "1px solid #ccc", borderRadius: "5px", marginTop: "10px", marginBottom: "20px" }}
           />
           <label style={{ marginTop: "30px", fontWeight: "bold", color: "white"}}>Description of Item:</label>
           <input
             placeholder="Type the description."
             type="text"
-            value={request.requestDescription}
-            onChange={(event) => setRequest(event.target.value)}
+            value={description}
+            onChange={(event) => setDescription(event.target.value)}
             style={{ width: "100%", padding: "10px", border: "1px solid #ccc", borderRadius: "5px", marginTop: "10px", marginBottom: "20px" }}
           />
           <label style={{ marginTop: "30px", fontWeight: "bold", color: "white" }}>Location for Delivery:</label>
           <input
             placeholder="Type your city and state."
             type="text"
-            value={request.location}
-            onChange={(event) => setRequest(event.target.value)}
+            value={location}
+            onChange={(event) => setLocation(event.target.value)}
             style={{ width: "100%", padding: "10px", border: "1px solid #ccc", borderRadius: "5px", marginTop: "10px", marginBottom: "20px" }}
           />
         </div>

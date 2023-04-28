@@ -16,6 +16,7 @@ export default function SignUp(props) {
   const [addUser] = useMutation(ADD_USER);
   const [loginUser] = useMutation(LOGIN_USER);
 
+
   const handleSignUpSubmit = async (event) => {
     event.preventDefault();
     console.log("FORMDATA: ", formState);
