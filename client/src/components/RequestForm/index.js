@@ -7,6 +7,7 @@ import { useMutation } from '@apollo/client';
 //Import the GraphQL mutation
 import { ADD_REQUEST } from '../../utils/mutations';
 // import Auth from '../../utils/auth';
+import Auth from '../../utils/auth';
 
 const RequestForm = ({ requestItem, requestDescription, location  }) => {
   const [request, setRequest] = useState('');
@@ -42,21 +43,21 @@ const RequestForm = ({ requestItem, requestDescription, location  }) => {
             <input
               placeholder="Type your request."
               type = "text"
-              value={requestItem }
+              value={request.requestItem }
               onChange={(event) => setRequest(event.target.value)}
             />
             <label> <h3> Description of Item : </h3>  </label>
             <input
               placeholder="Type the description."
               type = "text"
-              value={ requestDescription }
+              value={ request.requestDescription }
               onChange={(event) => setRequest(event.target.value)}
             />
               <label> <h3> Location for Delivery : </h3>  </label>
             <input
               placeholder="Type your city and state."
               type = "text"
-              value={ location }
+              value={ request.location }
               onChange={(event) => setRequest(event.target.value)}
             />
           </div>
