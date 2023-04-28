@@ -41,7 +41,7 @@ const RequestForm = ({ requestItem, requestDescription, location  }) => {
     <h1> Add Your Requests Here</h1>
     </div>
     {Auth.loggedIn() ? (
-      <form onSubmit={handleFormSubmit} style={{ border: "2px solid #fff", display: "flex", flexDirection: "column", alignItems: "center", marginTop: "10px", borderRadius: "10px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)", padding: "30px", width: "80%", maxWidth: "600px" }}>
+      <form onSubmit={handleFormSubmit} style={{ border: "2px solid #fff", display: "flex", flexDirection: "column", alignItems: "center", marginTop: "10px", borderRadius: "25px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)", padding: "30px", width: "80%", maxWidth: "600px" }}>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "30px", width: "100%" }}>
           <label style={{ marginTop: "1px", fontWeight: "bold", color: "white" }}>Requested Item:</label>
           <input
