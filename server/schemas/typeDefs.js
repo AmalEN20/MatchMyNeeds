@@ -60,6 +60,7 @@ const typeDefs = gql`
       requestItem: String!
       requestDescription: String!
       location: String!
+      requestBy: String
     ): Request
     updateRequest(
       requestId: ID!

@@ -31,11 +31,11 @@ const RequestForm = () => {
       }
 
       // update me object's cache
-      const { me } = cache.readQuery({ query: QUERY_ME });
-      cache.writeQuery({
-        query: QUERY_ME,
-        data: { me: { ...me, requests: [...me.requests, addRequest] } },
-      });
+      // const { me } = cache.readQuery({ query: QUERY_ME });
+      // cache.writeQuery({
+      //   query: QUERY_ME,
+      //   data: { me: { ...me, requests: [...me.requests, addRequest] } },
+      // });
     },
   });
  
@@ -46,6 +46,7 @@ const RequestForm = () => {
     console.log(item);
     console.log(location);
     console.log(description);
+    console.log(Auth.getProfile().data.email);
     //Since mutation function is async, wrap in try...catch to catch any network error
     try {
       //Execute mutation and pass in defined parameter data as variable
@@ -54,7 +55,7 @@ const RequestForm = () => {
           requestItem: item,
           requestDescription: description,
           location: location,
-          requestBy: Auth.getProfile().data.username,
+          requestBy: Auth.getProfile().data.email,
         },
       });
 
