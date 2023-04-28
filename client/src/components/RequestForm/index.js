@@ -8,25 +8,60 @@ import { useMutation } from '@apollo/client';
 import { ADD_REQUEST } from '../../utils/mutations';
 // import Auth from '../../utils/auth';
 import Auth from '../../utils/auth';
+import { QUERY_REQUESTS, QUERY_ME } from '../../utils/queries';
 
-const RequestForm = ({ requestItem, requestDescription, location  }) => {
-  const [request, setRequest] = useState('');
+const RequestForm = () => {
+
+  const [ item, setItem ] = useState('');
+  const [ description, setDescription] = useState('');
+  const [ location, setLocation ] = useState('');
 
   //Invoke 'useMutation()' hook to return a promise-based function and data about the ADD_REQUEST
-  const [addRequest, { error }] = useMutation(ADD_REQUEST);
+  const [addRequest, { error }] = useMutation(ADD_REQUEST, {
+    update(cache, { data: { addRequest } }) {
+      try {
+        const { requests } = cache.readQuery({ query: QUERY_REQUESTS });
+
+        cache.writeQuery({
+          query: QUERY_REQUESTS,
+          data: { requests: [addRequest, ...requests] },
+        });
+      } catch (e) {
+        console.error(e);
+      }
+
+      // update me object's cache
+      const { me } = cache.readQuery({ query: QUERY_ME });
+      cache.writeQuery({
+        query: QUERY_ME,
+        data: { me: { ...me, requests: [...me.requests, addRequest] } },
+      });
+    },
+  });
  
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
+    console.log(item);
+    console.log(location);
+    console.log(description);
     //Since mutation function is async, wrap in try...catch to catch any network error
     try {
-      //Execute mutation and pass in defined parameter data as variables
+      //Execute mutation and pass in defined parameter data as variable
       const data = await addRequest({
-        variables: { requestItem, requestDescription, location },
+        variables: { 
+          requestItem: item,
+          requestDescription: description,
+          location: location,
+          requestBy: Auth.getProfile().data.username,
+        },
       });
 
-      setRequest('');
+      setItem('');
+      setDescription('');
+      setLocation('');
+
     } catch (err) {
       console.error(err);
     }
@@ -43,22 +78,22 @@ const RequestForm = ({ requestItem, requestDescription, location  }) => {
             <input
               placeholder="Type your request."
               type = "text"
-              value={request.requestItem }
-              onChange={(event) => setRequest(event.target.value)}
+              value={item }
+              onChange = { (e) => setItem(e.target.value)}
             />
             <label> <h3> Description of Item : </h3>  </label>
             <input
               placeholder="Type the description."
               type = "text"
-              value={ request.requestDescription }
-              onChange={(event) => setRequest(event.target.value)}
+              value={ description }
+              onChange= { (e) => setDescription(e.target.value)}
             />
               <label> <h3> Location for Delivery : </h3>  </label>
             <input
               placeholder="Type your city and state."
               type = "text"
-              value={ request.location }
-              onChange={(event) => setRequest(event.target.value)}
+              value={ location }
+              onChange= { (e) => setLocation(e.target.value)}
             />
           </div>
 
