@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
@@ -40,14 +39,14 @@ const MyRequests = () => {
     return (
       <div>
       <div>
-        <div>
+        {/* <div>
           <h1 className="request">
             Viewing {username ? `${user.username}'s` : "your"} requests.
           </h1>
         </div>
         <div>
           <RequestPosts requests={user.requests} />
-        </div>
+        </div> */}
 
         <div>
           <RequestForm />
