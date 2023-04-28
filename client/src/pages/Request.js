@@ -42,7 +42,7 @@ const MyRequests = () => {
       <div>
         <div>
           <h1 className="request">
-            Viewing {username ? `${user.username}'s` : "your"} requests.
+            My Requests
           </h1>
         </div>
         <div>
