@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# MatchMyNeeds
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
 
-## Available Scripts
+- [Description](#description)
+- [Usage](#usage)
+- [Screenshots](#screenshots)
+- [Deloyed Link](#deloyed-link)
+- [Built with](#built-with)
+- [Continued Development](#continued-development)
+- [Authors](#authors)
 
-In the project directory, you can run:
+## Description
+MatchMyNeeds is a hub for communities all over the world to donate and share their items with one another. The website is completely free, an individual that signs up for an account can post their needs/request for a specific item and connects people from all over the nation to fulfill their ask. Purely giving out of the goodness of one’s heart or simply to declutter their space. There’s no limit to how much you can give or how much you can ask. The beauty about our application is that we connect people through community and the experience of sharing that item. What sets us apart from a thrift store is that users do not blindly give, they are personally donating their item to an individual who will give it a second chance.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Usage
+From the homepage, you can must first make an account to make request or view requests. 
 
-### `npm test`
+### Screenshots
+![Alt text](screenshots/home.png "Homepage")
+![Alt text](screenshots/profile.png "Profile")
+![Alt text](screenshots/login.png "Login")
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Deloyed Link
 
-### `npm run build`
+## Built with
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* GraphQL
+* React
+* MERN
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Continued Development
 
-### `npm run eject`
+We are actively considering the following items for future development: 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+* Achievement badges for frequent givers
+* Giving the option to ship the item using the website and creating shipping labels for the givers
+* Allowing users to directly message each other privately
+* To do list page with that lists  all requested items a users has marked as “reserved”
+* Allowing users to post a picture of a requested item along with the description text
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Authors
+  Betty Lu, Kristina Dukes, Amal Engulatov, and Jordan Dukes
