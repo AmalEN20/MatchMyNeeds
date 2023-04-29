@@ -35,27 +35,33 @@ const SingleRequest = (
   return (
     <div className="my-3">
       <div className="card-header bg-dark text-light p-2 m-0">
-        {request.requestBy} <br />
-        <span style={{ fontSize: "1rem" }}>
-          had this request on {request.postedOn}
-        </span>
-        <h3>{request.requestItem}</h3>
-        <h3>{request.requestDescription}</h3>
-        <h3>{request.location}</h3>
-      </div>
-      <h3>{request.request}</h3>
-      <div className="bg-light py-4">
-        <blockquote
+      <blockquote
           className="p-4"
           style={{
             fontSize: "1.5rem",
             fontStyle: "italic",
             border: "2px dotted #1a1a1a",
             lineHeight: "1.5",
-          }}
-        >
-          {request.requestItem}
+          }}>
+            {request.requestItem}
         </blockquote>
+        <strong>{request.requestBy}</strong>
+        <span style={{ fontSize: "1rem" }}> had this request on {request.postedOn}
+        </span>
+        <h5>Item: </h5>
+        <input value={request.requestItem}/>
+        <button>Edit item</button>
+        <h3>Description: </h3>
+        <input value={request.requestDescription}/>
+        <button>Edit description</button>
+        <h3>Location: </h3>
+        <input value={request.location}/>
+        <button>Edit location</button>
+      </div>
+      <br></br>
+      <button>Delete request</button>
+      <div className="bg-light py-4">
+
       </div>
 
       <h3> {request.request} </h3>
