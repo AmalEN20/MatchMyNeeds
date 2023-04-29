@@ -41,8 +41,13 @@ const MyRequests = () => {
       <div>
       <div>
         <div>
-          <RequestForm />
-          
+          <h1 className="request">
+            My Requests
+          </h1>
+        </div>
+        <div>
+          <RequestPosts requests={user.requests} />
+
         </div>
 
         <div>
