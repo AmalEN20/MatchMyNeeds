@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 // Import the `useParams()` hook
 import { useParams } from "react-router-dom";
@@ -32,6 +32,17 @@ const SingleRequest = (
   if (loading) {
     return <div>Loading...</div>;
   }
+
+  const handleChange = async (event) => {
+    event.preventDefault();
+      const data = await editRequest({
+        variables: {
+          requestItem: request.requestItem,
+          requestDescription: request.requestDescription
+        }
+      })
+ }
+
   return (
     <div className="my-3">
       <div className="card-header bg-dark text-light p-2 m-0">
@@ -49,7 +60,10 @@ const SingleRequest = (
         <span style={{ fontSize: "1rem" }}> had this request on {request.postedOn}
         </span>
         <h5>Item: </h5>
-        <input value={request.requestItem}/>
+        <input 
+        value={request.requestItem} 
+        type="text"
+        onChange={handleChange}/>
         <button>Edit item</button>
         <h3>Description: </h3>
         <input value={request.requestDescription}/>
