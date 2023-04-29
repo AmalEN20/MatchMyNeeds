@@ -43,33 +43,31 @@ function Navbar() {
               </Link>
             </li>
 
-
-
             {Auth.loggedIn() ? (
-  <li className="nav-item">
-  <Link
-    to="/request/me"
-    className="nav-links"
-    onClick={closeMobileMenu}
-  >
-    My Requests
-  </Link>
-</li>
-) : (
-  <div>
-  </div>
-)}
+              <li className="nav-item">
+                <Link
+                  to="/request/me"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  My Requests
+                </Link>
+              </li>
+            ) : (
+              <div></div>
+            )}
 
-{Auth.loggedIn() ? (
-            <li className="nav-item">
-            <Link to="/post" className="nav-links" onClick={closeMobileMenu}>
-              Post
-            </Link>
-          </li>
-) : (
-  <div>
-  </div>
-)}
+
+              <li className="nav-item">
+                <Link
+                  to="/allrequests"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  All Requests
+                </Link>
+              </li>
+
 
             <li>
               <Link
@@ -82,32 +80,25 @@ function Navbar() {
             </li>
           </ul>
           {Auth.loggedIn() ? (
-            <div> 
+            <div>
               {button && (
-              <Button buttonStyle="btn--outline" onClick={() => Auth.logout()}>
+                <Button
+                  buttonStyle="btn--outline"
+                  onClick={() => Auth.logout()}
+                >
                   LOG OUT
-              </Button>
-              )} 
+                </Button>
+              )}
             </div>
           ) : (
             <div>
-            {button && <Button buttonStyle="btn--outline">LOG IN</Button>}
+              {button && <Button buttonStyle="btn--outline">LOG IN</Button>}
             </div>
           )}
-
-
-          
-
-
-
-          
         </div>
       </nav>
     </>
   );
 }
-
-
-
 
 export default Navbar;
