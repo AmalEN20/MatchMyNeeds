@@ -13,7 +13,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import SignUp from './pages/SignUp';
 import Footer from '../src/components/Footer/Footer';
 import MyRequests from './pages/Request';
-
+import SingleRequest from './pages/SingleRequest';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',
@@ -45,7 +45,7 @@ function App() {
           <Route path='/' exact component={Home} />
           <Route path='/request/me' component={MyRequests} />
           <Route path='/signup' component={SignUp} />
-          {/* <Route path='/requests/:requestId' component={SingleRequest}/> */}
+          <Route path='/requests/:requestId' component={SingleRequest}/>
         </Switch>
         <Footer />
       </Router>
