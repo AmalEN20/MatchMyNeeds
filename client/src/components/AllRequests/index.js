@@ -10,20 +10,25 @@ if (!requests.length) {
 return (
   <div style={{ 
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center'
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifycontent: 'space-around',
   }}>
     {requests &&
       requests.map((request) => (
         <div key={request._id} style={{
-          marginBottom: '20px',
-          border: '1px solid black',
-          padding: '10px'
+          
+          border: '2px solid white',
+          borderRadius: "25px",
+          padding: '20px',
+          width: '30%',
+
+
         }}>
           <Link
             to={`/requests/${request._id}`}
             style={{
-              textDecoration: 'none'
+              color: 'white'
             }}
           >
             <div>
@@ -32,7 +37,7 @@ return (
               }}>Requested Item: {request.requestItem}</h4>
               <h5 style={{
                 marginTop: '0',
-                color: 'gray'
+                color: 'white'
               }}>Description: {request.requestDescription}</h5>
             </div>
           </Link>

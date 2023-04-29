@@ -42,22 +42,42 @@ function Navbar() {
                 Home
               </Link>
             </li>
+
+
+
+            {Auth.loggedIn() ? (
+  <li className="nav-item">
+  <Link
+    to="/request/me"
+    className="nav-links"
+    onClick={closeMobileMenu}
+  >
+    My Requests
+  </Link>
+</li>
+) : (
+  <div>
+  </div>
+)}
+
+{Auth.loggedIn() ? (
             <li className="nav-item">
-              <Link
-                to="/request/me"
-                className="nav-links"
-                onClick={closeMobileMenu}
-              >
-                My Requests
-              </Link>
-            </li>
+            <Link to="Post" className="nav-links" onClick={closeMobileMenu}>
+              Post
+            </Link>
+          </li>
+) : (
+  <div>
+  </div>
+)}
+
             <li>
               <Link
                 to="/signup"
                 className="nav-links-mobile"
                 onClick={closeMobileMenu}
               >
-                Sign Up
+                LOG IN
               </Link>
             </li>
           </ul>
@@ -65,15 +85,20 @@ function Navbar() {
             <div> 
               {button && (
               <Button buttonStyle="btn--outline" onClick={() => Auth.logout()}>
-                  LOGOUT
+                  LOG OUT
               </Button>
               )} 
             </div>
           ) : (
             <div>
-            {button && <Button buttonStyle="btn--outline">SIGN UP</Button>}
+            {button && <Button buttonStyle="btn--outline">LOG IN</Button>}
             </div>
           )}
+
+
+          
+
+
 
           
         </div>
@@ -81,5 +106,8 @@ function Navbar() {
     </>
   );
 }
+
+
+
 
 export default Navbar;
