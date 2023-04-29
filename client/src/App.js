@@ -14,7 +14,7 @@ import SignUp from './pages/SignUp';
 import Footer from '../src/components/Footer/Footer';
 import MyRequests from './pages/Request';
 
-import Post from './pages/Post';
+import AllRequests from './pages/AllRequests';
 
 import SingleRequest from './pages/SingleRequest';
 
@@ -48,7 +48,7 @@ function App() {
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/request/me' component={MyRequests} />
-          <Route path='post' component={Post} />
+          <Route path='/allrequests' component={AllRequests} />
           <Route path='/signup' component={SignUp} />
           <Route path='/requests/:requestId' component={SingleRequest}/>
         </Switch>

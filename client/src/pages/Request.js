@@ -20,7 +20,7 @@ const MyRequests = () => {
   });
 
   const user = data?.me || data?.user || {};
-  console.log(user);
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -35,7 +35,7 @@ const MyRequests = () => {
   }
 
   if (Auth.loggedIn() && Auth.getProfile().data.email === data.me.email) {
-    console.log(user);
+
     return (
       <div>
       <div>
