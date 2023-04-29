@@ -20,7 +20,7 @@ const MyRequests = () => {
   });
 
   const user = data?.me || data?.user || {};
-
+  console.log(user);
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -34,34 +34,23 @@ const MyRequests = () => {
     );
   }
 
-  console.log(data);
   if (Auth.loggedIn() && Auth.getProfile().data.email === data.me.email) {
     console.log(user);
     return (
       <div>
       <div>
-
         <div>
-          <RequestForm requests={user.requests} />
-
-        </div>
-
-        <div>
-
-        <h1 style={{color: 'white',
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',}}>
-
-
-            Viewing {username ? `${user.username}'s` : "your"} requests.
+          <h1 className="request">
+            My Requests
           </h1>
-
-
+        </div>
+        <div>
           <RequestPosts requests={user.requests} />
         </div>
 
-
+        <div>
+          <RequestForm />
+        </div>
       </div>
     </div>
     )
