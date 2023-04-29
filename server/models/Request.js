@@ -54,7 +54,7 @@ const requestSchema = new Schema({
         type: String,
         required: true,
       },
-      PostedOn: {
+      postedOn: {
         type: Date,
         default: Date.now,
         get: (timestamp) => dateFormat(timestamp),

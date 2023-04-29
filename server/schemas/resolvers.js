@@ -25,8 +25,8 @@ const resolvers = {
     },
 
     request: async (parent, { requestId }) => {
-      return Request.findOne({ _id: requestId })
-    }
+      return Request.findOne({ _id: requestId }).populate('comments');
+    },
   },
 
   Mutation: {

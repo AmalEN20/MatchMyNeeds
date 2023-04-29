@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ApolloServer, gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 
 import { ADD_COMMENT } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
-const posts = [
-  {
-    title: 'My first post',
-    text: "hello, im post",
-    comments:[]
-  }
-]
+// const posts = [
+//   {
+//     title: 'My first post',
+//     text: "hello, im post",
+//     comments:[]
+//   }
+// ]
 
 const CommentForm = ({ requestId }) => {
   const [commentText, setCommentText] = useState('');

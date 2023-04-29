@@ -30,7 +30,7 @@ export const QUERY_SINGLE_REQUEST = gql`
         _id
         commentText
         commentedBy
-        PostedOn
+        postedOn
       }
     }
   }
