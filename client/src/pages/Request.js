@@ -49,45 +49,6 @@ const MyRequests = () => {
           <RequestPosts requests={user.requests} />
         </div>
 
-      {Auth.loggedIn() ? (
-        <form
-          className="flex-row justify-center justify-space-between-md align-center"
-          onSubmit={handleFormSubmit}>
-          <div className="col-12 col-lg-9">
-          <label> <h3> Requested Item: </h3> </label>
-            <input
-              placeholder="Type your request here."
-              value={ requestItem }
-              className="form-input w-100"
-              onChange={(event) => setRequest(event.target.value)}
-            />
-            <label> <h3> Description of Item: </h3>  </label>
-            <input
-              placeholder="Type the description here."
-              value={ requestDescription }
-              className="form-input w-100"
-              onChange={(event) => setRequest(event.target.value)}
-            />
-          </div>
-
-          <div className="col-12 col-lg-3">
-            <button onClick={handleFormSubmit} className="btn btn-info btn-block py-3" type="submit">
-              Submit
-            </button>
-          </div>
-          {error && (
-            <div className="col-12 my-3 bg-danger text-white p-3">
-              {error.message}
-            </div>
-          )}
-        </form>
-      ) : (
-        <p>
-          You need to be logged in to add a request. Please{' '}
-          <Link to="/signup">login.</Link>
-          <Link to="/SingleRequest">Second Link.</Link>
-        </p>
-      )}
         <div>
           <RequestForm />
         </div>

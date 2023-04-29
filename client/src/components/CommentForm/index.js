@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
+import { ApolloServer, gql, useMutation } from '@apollo/client';
 
 import { ADD_COMMENT } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
+
+const posts = [
+  {
+    title: 'My first post',
+    text: "hello, im post",
+    comments:[]
+  }
+]
 
 const CommentForm = ({ requestId }) => {
   const [commentText, setCommentText] = useState('');
@@ -20,7 +28,7 @@ const CommentForm = ({ requestId }) => {
         variables: {
           requestId,
           commentText,
-          commentedBy: Auth.getProfile().data.username,
+          commentedBy: Auth.getProfile().data.email,
         },
       });
 
@@ -41,7 +49,7 @@ const CommentForm = ({ requestId }) => {
 
   return (
     <div>
-      <h4>What are your thoughts on this request?</h4>
+      <h4>Use the comment box to reserve the item below or simply to ask the requester any questions you may have.  </h4>
 
       {Auth.loggedIn() ? (
         <>
@@ -69,7 +77,7 @@ const CommentForm = ({ requestId }) => {
             </div>
 
             <div className="col-12 col-lg-3">
-              <button className="btn btn-primary btn-block py-3" type="submit">
+              <button onClick={handleFormSubmit} className="btn btn-primary btn-block py-3" type="submit">
                 Add Comment
               </button>
             </div>
