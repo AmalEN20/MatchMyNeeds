@@ -65,8 +65,8 @@ export const REMOVE_REQUEST = gql`
 `;
 
 export const ADD_COMMENT = gql`
-  mutation addComment($requestId: String!, $commentText: String!) {
-    addComment(requestId: $requestId, commentText: $commentText) {
+  mutation addComment($requestId: String!, $commentText: String!, $commentedBy: String!) {
+    addComment(requestId: $requestId, commentText: $commentText, commentedBy: $commentedBy) {
       _id
       requestItem
       requestDescription

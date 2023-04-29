@@ -62,7 +62,7 @@ function Navbar() {
 
 {Auth.loggedIn() ? (
             <li className="nav-item">
-            <Link to="Post" className="nav-links" onClick={closeMobileMenu}>
+            <Link to="/post" className="nav-links" onClick={closeMobileMenu}>
               Post
             </Link>
           </li>
