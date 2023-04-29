@@ -45,7 +45,7 @@ function Navbar() {
 
 
 
-            {Auth.loggedIn() ? (
+  
   <li className="nav-item">
   <Link
     to="/request/me"
@@ -55,21 +55,15 @@ function Navbar() {
     My Requests
   </Link>
 </li>
-) : (
-  <div>
-  </div>
-)}
 
-{Auth.loggedIn() ? (
+
+
             <li className="nav-item">
             <Link to="/post" className="nav-links" onClick={closeMobileMenu}>
               Post
             </Link>
           </li>
-) : (
-  <div>
-  </div>
-)}
+
 
             <li>
               <Link

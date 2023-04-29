@@ -12,13 +12,13 @@ function Home() {
   return (
     <>
       <HeroSection />
-      {/* <RequestForm />
+      <RequestForm />
       {loading ? (
         <div>Loading...</div>
       ) : (
       <RequestPosts
       requests={requests}/>
-      )} */}
+      )}
     </>
   );
 }
