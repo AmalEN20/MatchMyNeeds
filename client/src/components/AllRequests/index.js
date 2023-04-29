@@ -6,47 +6,45 @@ const RequestPosts = ({requests}) => {
 if (!requests.length) {
   return <h3>No Requests Yet</h3>
 }
-const styles = {
-  request: {
-    marginBottom: '20px',
-    border: '1px solid white',
-    padding: '10px'
-  },
-  link: {
-    textDecoration: 'none'
-  },
-  title: {
-    marginBottom: '5px'
-  },
-  description: {
-    marginTop: '0',
-    color: 'gray'
-  }
-};
 
 return (
   <div style={{ 
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center'
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifycontent: 'space-around',
   }}>
     {requests &&
       requests.map((request) => (
-        <div key={request._id} style={styles.request}>
+        <div key={request._id} style={{
+          
+          border: '2px solid white',
+          borderRadius: "25px",
+          padding: '20px',
+          width: '30%',
+
+
+        }}>
           <Link
             to={`/requests/${request._id}`}
-            style={styles.link}
+            style={{
+              color: 'white'
+            }}
           >
             <div>
-              <h4 style={styles.title}>Requested Item: {request.requestItem}</h4>
-              <h5 style={styles.description}>Description: {request.requestDescription}</h5>
+              <h4 style={{
+                marginBottom: '5px'
+              }}>Requested Item: {request.requestItem}</h4>
+              <h5 style={{
+                marginTop: '0',
+                color: 'white'
+              }}>Description: {request.requestDescription}</h5>
             </div>
           </Link>
         </div>
       ))}
   </div>
-); 
-
+);
 };
 
 export default RequestPosts;

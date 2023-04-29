@@ -34,23 +34,33 @@ const MyRequests = () => {
     );
   }
 
-  if (Auth.loggedIn() && Auth.getProfile().data.username === username) {
+  console.log(data);
+  if (Auth.loggedIn() && Auth.getProfile().data.email === data.me.email) {
     console.log(user);
     return (
       <div>
       <div>
-        {/* <div>
-          <h1 className="request">
-            Viewing {username ? `${user.username}'s` : "your"} requests.
-          </h1>
-        </div>
-        <div>
-          <RequestPosts requests={user.requests} />
-        </div> */}
-
         <div>
           <RequestForm />
+          
         </div>
+
+        <div>
+
+        <h1 style={{color: 'white',
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',}}>
+
+
+            Viewing {username ? `${user.username}'s` : "your"} requests.
+          </h1>
+
+
+          <RequestPosts requests={user.requests} />
+        </div>
+
+
       </div>
     </div>
     )
