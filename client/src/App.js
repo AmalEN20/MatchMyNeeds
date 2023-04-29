@@ -48,7 +48,7 @@ function App() {
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/request/me' component={MyRequests} />
-          <Route path='Post' component={Post} />
+          <Route path='post' component={Post} />
           <Route path='/signup' component={SignUp} />
           <Route path='/requests/:requestId' component={SingleRequest}/>
         </Switch>
