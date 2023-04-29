@@ -71,7 +71,7 @@ const typeDefs = gql`
       fulfilled: Boolean
     ): Request
     addComment(
-      requestId: ID!
+      requestId: String!
       commentText: String!
     ): Request
     updateComment(
