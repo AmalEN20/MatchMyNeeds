@@ -1,13 +1,16 @@
 import React from "react";
 
 // Import the `useParams()` hook
-import { useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
+import { Link, useParams } from "react-router-dom";
+import { BrowserRouter as Navigate } from "react-router-dom";
+import { useMutation, useQuery } from "@apollo/client";
 
 import CommentList from "../components/CommentList";
 import CommentForm from "../components/CommentForm";
 
 import { QUERY_SINGLE_REQUEST } from "../utils/queries";
+import Auth from "../utils/auth";
+import { REMOVE_REQUEST } from "../utils/mutations";
 
 const SingleRequest = (
   requestBy,
@@ -16,6 +19,9 @@ const SingleRequest = (
   location,
   postedOn
 ) => {
+
+  const [ removeRequest ] = useMutation(REMOVE_REQUEST);
+
   // Use `useParams()` to retrieve value of the route parameter `:requestId`
   const { requestId } = useParams();
 
@@ -26,44 +32,92 @@ const SingleRequest = (
 
   const request = data?.request || {};
 
-  console.log(requestId);
-  console.log(request);
-
   if (loading) {
     return <div>Loading...</div>;
   }
 
+  const handleChange = async (event) => {
+    event.preventDefault();
+    
+    try {
+      const data = await removeRequest({
+        variables: { requestId },
+      });
+
+      window.location.href='/request/me';
+    } catch (err) {
+      console.error(err);
+    }
+  } ;
+
   return (
-    <div className="my-3">
+    <>
+    {Auth.getProfile().data.email === request.requestBy ? (
+      <div className="my-3">
       <div className="card-header bg-dark text-light p-2 m-0">
-      <blockquote
+        <blockquote
           className="p-4"
           style={{
             fontSize: "1.5rem",
             fontStyle: "italic",
             border: "2px solid #1a1a1a",
             lineHeight: "1.5",
-          }}>
-            {request.requestItem}
+          }}
+        >
+          {request.requestItem}
         </blockquote>
         <strong>{request.requestBy}</strong>
-        <span style={{ fontSize: "1rem" }}> had this request on {request.postedOn}
+        <span style={{ fontSize: "1rem" }}>
+          {" "}
+          had this request on {request.postedOn}
         </span>
         <h3>Item: </h3>
-        <input 
-        value={request.requestItem} />
+        <input value={request.requestItem} />
         <button>Edit item</button>
         <h3>Description: </h3>
-        <input value={request.requestDescription}/>
+        <input value={request.requestDescription} />
         <button>Edit description</button>
         <h3>Location: </h3>
-        <input value={request.location}/>
+        <input value={request.location} />
         <button>Edit location</button>
       </div>
       <br></br>
-      <button>Delete request</button>
-      <div className="bg-light py-4">
+      <button onClick={handleChange}>Delete request</button>
+      
+      <div className="bg-light py-4"></div>
 
+      <h3> {request.request} </h3>
+      <div className="my-5">
+        <CommentList comments={request.comments} />
+      </div>
+      <div className="m-3 p-4" style={{ border: "1px dotted #1a1a1a" }}>
+        <CommentForm requestId={request._id} />
+      </div>
+    </div>
+    ) : (
+      <div className="my-3">
+      <div className="card-header bg-dark text-light p-2 m-0">
+        {request.requestBy} <br />
+        <span style={{ fontSize: "1rem" }}>
+          had this request on {request.postedOn}
+        </span>
+        <h3>{request.requestItem}</h3>
+        <h3>{request.requestDescription}</h3>
+        <h3>{request.location}</h3>
+      </div>
+      <h3>{request.request}</h3>
+      <div className="bg-light py-4">
+        <blockquote
+          className="p-4"
+          style={{
+            fontSize: "1.5rem",
+            fontStyle: "italic",
+            border: "2px dotted #1a1a1a",
+            lineHeight: "1.5",
+          }}
+        >
+          {request.requestItem}
+        </blockquote>
       </div>
 
       <h3> {request.request} </h3>
@@ -74,6 +128,9 @@ const SingleRequest = (
         <CommentForm requestId={request._id} />
       </div>
     </div>
+    )}
+
+    </>
   );
 };
 
