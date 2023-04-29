@@ -5,14 +5,9 @@ import { useMutation } from '@apollo/client';
 import { ADD_COMMENT } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
+import { QUERY_REQUESTS } from '../../utils/queries';
 
-// const posts = [
-//   {
-//     title: 'My first post',
-//     text: "hello, im post",
-//     comments:[]
-//   }
-// ]
+
 
 const CommentForm = ({ requestId }) => {
   const [commentText, setCommentText] = useState('');
