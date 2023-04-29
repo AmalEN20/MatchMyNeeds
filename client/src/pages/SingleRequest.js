@@ -33,16 +33,6 @@ const SingleRequest = (
     return <div>Loading...</div>;
   }
 
-  const handleChange = async (event) => {
-    event.preventDefault();
-      const data = await editRequest({
-        variables: {
-          requestItem: request.requestItem,
-          requestDescription: request.requestDescription
-        }
-      })
- }
-
   return (
     <div className="my-3">
       <div className="card-header bg-dark text-light p-2 m-0">
