@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 
 // Import the `useParams()` hook
 import { useParams } from "react-router-dom";
@@ -41,7 +41,7 @@ const SingleRequest = (
           style={{
             fontSize: "1.5rem",
             fontStyle: "italic",
-            border: "2px dotted #1a1a1a",
+            border: "2px solid #1a1a1a",
             lineHeight: "1.5",
           }}>
             {request.requestItem}
@@ -49,11 +49,9 @@ const SingleRequest = (
         <strong>{request.requestBy}</strong>
         <span style={{ fontSize: "1rem" }}> had this request on {request.postedOn}
         </span>
-        <h5>Item: </h5>
+        <h3>Item: </h3>
         <input 
-        value={request.requestItem} 
-        type="text"
-        onChange={handleChange}/>
+        value={request.requestItem} />
         <button>Edit item</button>
         <h3>Description: </h3>
         <input value={request.requestDescription}/>
