@@ -40,13 +40,9 @@ const MyRequests = () => {
     return (
       <div>
       <div>
+
         <div>
-          <h1 className="request">
-            My Requests
-          </h1>
-        </div>
-        <div>
-          <RequestPosts requests={user.requests} />
+          <RequestForm requests={user.requests} />
 
         </div>
 
