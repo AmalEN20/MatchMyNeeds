@@ -13,7 +13,7 @@ db.once('open', async () => {
     for (let i = 0; i < requestSeeds.length; i++) {
       const { _id, requestBy } = await Request.create(requestSeeds[i]);
       const user = await User.findOneAndUpdate(
-        { username: requestBy },
+        { email: requestBy },
         {
           $addToSet: {
             requests: _id,

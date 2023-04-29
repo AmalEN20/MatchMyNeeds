@@ -3,28 +3,28 @@
         "requestItem": "Microwave",
         "requestDescription": "I am in need of a microwave.",
         "location": "San Francisco",
-        "requestBy": "Alex123"
+        "requestBy": "alex@abc.com"
     },
     {
         "requestItem": "Carseat",
         "requestDescription": "My baby is growing fast, and I really need a carseat for a 1-year-old.",
         "location": "Seattle",
-        "requestBy": "Ben123"
+        "requestBy": "ben@abc.com"
     },
     {
         "requestItem": "Prom Dress",
         "requestDescription": "I am graduating soon, and I really want a green prom dress. I am a size 6.",
         "location": "New York",
-        "requestBy": "Cass123"
+        "requestBy": "cass@abc.com"
     },
     {
         "requestItem": "Shoes",
         "requestDescription": "I really want a pair of new basketball shoes. I am size 10.",
         "location": "Houston",
-        "requestBy": "David123",
+        "requestBy": "david@abc.com",
         "comments": {
             "commentText": "Do you have a color preference?",
-            "commentBy": "Ben123"
+            "commentBy": "ben@abc.com"
         }
     }
   ]
