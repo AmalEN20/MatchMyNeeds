@@ -57,7 +57,7 @@ export const UPDATE_REQUEST = gql`
 `;
 
 export const REMOVE_REQUEST = gql`
-  mutation removeRequest($requestId: String!) {
+  mutation removeRequest($requestId: ID!) {
     removeRequest(requestId: $requestId) {
       _id
     }

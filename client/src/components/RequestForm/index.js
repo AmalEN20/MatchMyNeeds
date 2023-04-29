@@ -17,22 +17,8 @@ const RequestForm = () => {
   const [ location, setLocation ] = useState('');
 
   //Invoke 'useMutation()' hook to return a promise-based function and data about the ADD_REQUEST
-  const [addRequest, { error }] = useMutation(ADD_REQUEST, {
-    update(cache, { data: { addRequest } }) {
-      try {
-        const { requests } = cache.readQuery({ query: QUERY_REQUESTS });
-
-        cache.writeQuery({
-          query: QUERY_REQUESTS,
-          data: { requests: [addRequest, ...requests] },
-        });
-      } catch (e) {
-        console.error(e);
-      }
-    },
-  });
+  const [addRequest, {error}] = useMutation(ADD_REQUEST);
  
-
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -52,9 +38,7 @@ const RequestForm = () => {
         },
       });
 
-      setItem('');
-      setDescription('');
-      setLocation('');
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }
