@@ -73,7 +73,7 @@ const typeDefs = gql`
     addComment(
       requestId: String!
       commentText: String!
-      commentedBy: String!
+      commentedBy: String
     ): Request
     updateComment(
       commentId: ID!

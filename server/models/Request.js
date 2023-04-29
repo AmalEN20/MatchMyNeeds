@@ -52,7 +52,7 @@ const requestSchema = new Schema({
       },
       commentedBy: {
         type: String,
-        required: true,
+        required: false,
       },
       postedOn: {
         type: Date,
