@@ -44,7 +44,7 @@ export const LOGIN_USER = gql`
 `;
 
 export const UPDATE_REQUEST = gql`
-  mutation updateRequest($requestId: String!) {
+  mutation updateRequest($requestId: ID!) {
     updateRequest(requestId: $requestId) {
       _id
       requestItem
@@ -86,7 +86,7 @@ export const ADD_COMMENT = gql`
 `;
 
 export const UPDATE_COMMENT = gql`
-  mutation updateComment($commentId: String!, $commentText: String!) {
+  mutation updateComment($commentId: ID!, $commentText: String!) {
     updateComment(commentId: $commentId, commentText: $commentText) {
       _id
       requestItem
@@ -107,7 +107,7 @@ export const UPDATE_COMMENT = gql`
 `;
 
 export const REMOVE_COMMENT = gql`
-  mutation removeComment($commentId: String!) {
+  mutation removeComment($commentId: ID!) {
     removeComment(commentId: $commentId) {
       _id
     }
