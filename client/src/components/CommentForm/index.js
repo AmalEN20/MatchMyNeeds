@@ -5,8 +5,6 @@ import { useMutation } from '@apollo/client';
 import { ADD_COMMENT } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
-import { QUERY_REQUESTS } from '../../utils/queries';
-
 
 
 const CommentForm = ({ requestId }) => {

@@ -9,10 +9,10 @@ import CommentForm from "../components/CommentForm";
 
 import { QUERY_SINGLE_REQUEST } from "../utils/queries";
 import Auth from "../utils/auth";
-import { REMOVE_REQUEST, UPDATE_REQUEST } from "../utils/mutations";
+import { UPDATE_REQUEST } from "../utils/mutations";
+import HandleDelete from "../components/DltRequestBtn/DeleteBtn";
 
 const SingleRequest = () => {
-
   // Use `useParams()` to retrieve value of the route parameter `:requestId`
   const { requestId } = useParams();
 
@@ -22,54 +22,70 @@ const SingleRequest = () => {
   });
 
   const request = data?.request || {};
+
   const [item, setItem] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
 
   const [updateRequest] = useMutation(UPDATE_REQUEST);
-  const [removeRequest] = useMutation(REMOVE_REQUEST);
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
-
-  const handleEdits = async (event) => {
+  const handleItemEdits = async (event) => {
     event.preventDefault();
 
     try {
       const data = await updateRequest({
         variables: {
-          requestId,
-          item,
-          description,
-          location,
+          requestId: requestId,
+          requestItem: item,
         },
       });
 
-      window.location.reload();
     } catch (err) {
       console.error(err);
     }
   };
 
-  const handleChange = async (event) => {
+  const handleDescriptionEdits = async (event) => {
     event.preventDefault();
 
     try {
-      const data = await removeRequest({
-        variables: { requestId },
+      const data = await updateRequest({
+        variables: {
+          requestId: requestId,
+          requestDescription: description,
+        },
       });
-
-      window.location.href = "/request/me";
     } catch (err) {
       console.error(err);
     }
   };
 
+  const handleLocationEdits = async (event) => {
+    event.preventDefault();
+
+    try {
+      const data = await updateRequest({
+        variables: {
+          requestId: requestId,
+          location: location,
+        },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  console.log(item);
+  console.log(description);
+  console.log(location);
+
   return (
     <>
-      {Auth.loggedIn() && Auth.getProfile().data.email === request.requestBy ? (
+      {Auth.getProfile().data.email === request.requestBy ? (
         <div className="my-3">
           <div className="card-header bg-dark text-light p-2 m-0">
             <blockquote
@@ -87,33 +103,61 @@ const SingleRequest = () => {
               <strong>You </strong>
               requested the item on {request.postedOn}
             </span>
-            <h3>Item: </h3>
-            <input
-              placeholder={request.requestItem}
-              type="text"
-              value={item}
-              onChange={(event) => setItem(event.target.value)}
-            />
-            <button onClick={handleEdits}>Edit item</button>
-            <h3>Description: </h3>
-            <input
-              placeholder={request.requestDescription}
-              type="text"
-              value={description}
-              onChange={(event) => setDescription(event.target.value)}
-            />
-            <button onClick={handleEdits}>Edit description</button>
-            <h3>Location: </h3>
-            <input
-              placeholder={request.location}
-              type="text"
-              value={location}
-              onChange={(event) => setLocation(event.target.value)}
-            />
-            <button onClick={handleEdits}>Edit location</button>
+            <br></br>
+            <br></br>
+            <form onSubmit={handleItemEdits}>
+              <div>
+                <label>Item: </label>
+                <input
+                  placeholder={request.requestItem}
+                  type="text"
+                  value={item}
+                  onChange={(event) => setItem(event.target.value)}
+                />
+              </div>
+              <div>
+                <button onClick={handleItemEdits} type="submit">
+                  Edit Item
+                </button>
+              </div>
+            </form>
+            <br></br>
+            <form onSubmit={handleDescriptionEdits}>
+              <div>
+              <label>Description: </label>
+              <input
+                placeholder={request.requestDescription}
+                type="text"
+                value={description}
+                onChange={(event) => setDescription(event.target.value)}
+              />
+              </div>
+              <div>
+              <button onClick={handleDescriptionEdits} type="submit">
+                Edit Description
+              </button>
+              </div>
+            </form>
+              <br></br>
+            <form onSubmit={handleLocationEdits}>
+              <div>
+              <label>Location: </label>
+              <input
+                placeholder={request.location}
+                type="text"
+                value={location}
+                onChange={(event) => setLocation(event.target.value)}
+              />
+              </div>
+              <div>
+              <button onClick={handleLocationEdits} type="submit">
+                Edit location
+              </button>
+              </div>
+            </form>
           </div>
           <br></br>
-          <button onClick={handleChange}>Delete request</button>
+          <HandleDelete />
 
           <div className="my-5">
             <CommentList comments={request.comments} />
