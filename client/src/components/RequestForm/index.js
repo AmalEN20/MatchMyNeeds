@@ -8,7 +8,6 @@ import { useMutation } from '@apollo/client';
 import { ADD_REQUEST } from '../../utils/mutations';
 // import Auth from '../../utils/auth';
 import Auth from '../../utils/auth';
-import { QUERY_REQUESTS } from '../../utils/queries';
 
 const RequestForm = () => {
   

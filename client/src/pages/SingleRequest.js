@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 // Import the `useParams()` hook
-import { Link, useParams } from "react-router-dom";
-import { BrowserRouter as Navigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
 
 import CommentList from "../components/CommentList";
@@ -10,17 +9,9 @@ import CommentForm from "../components/CommentForm";
 
 import { QUERY_SINGLE_REQUEST } from "../utils/queries";
 import Auth from "../utils/auth";
-import { REMOVE_REQUEST } from "../utils/mutations";
+import { REMOVE_REQUEST, UPDATE_REQUEST } from "../utils/mutations";
 
-const SingleRequest = (
-  requestBy,
-  requestDescription,
-  requestItem,
-  location,
-  postedOn
-) => {
-
-  const [ removeRequest ] = useMutation(REMOVE_REQUEST);
+const SingleRequest = () => {
 
   // Use `useParams()` to retrieve value of the route parameter `:requestId`
   const { requestId } = useParams();
@@ -31,105 +22,140 @@ const SingleRequest = (
   });
 
   const request = data?.request || {};
+  const [item, setItem] = useState("");
+  const [description, setDescription] = useState("");
+  const [location, setLocation] = useState("");
+
+  const [updateRequest] = useMutation(UPDATE_REQUEST);
+  const [removeRequest] = useMutation(REMOVE_REQUEST);
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
+
+  const handleEdits = async (event) => {
+    event.preventDefault();
+
+    try {
+      const data = await updateRequest({
+        variables: {
+          requestId,
+          item,
+          description,
+          location,
+        },
+      });
+
+      window.location.reload();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const handleChange = async (event) => {
     event.preventDefault();
-    
+
     try {
       const data = await removeRequest({
         variables: { requestId },
       });
 
-      window.location.href='/request/me';
+      window.location.href = "/request/me";
     } catch (err) {
       console.error(err);
     }
-  } ;
+  };
 
   return (
     <>
-    {Auth.getProfile().data.email === request.requestBy ? (
-      <div className="my-3">
-      <div className="card-header bg-dark text-light p-2 m-0">
-        <blockquote
-          className="p-4"
-          style={{
-            fontSize: "1.5rem",
-            fontStyle: "italic",
-            border: "2px solid #1a1a1a",
-            lineHeight: "1.5",
-          }}
-        >
-          {request.requestItem}
-        </blockquote>
-        <strong>{request.requestBy}</strong>
-        <span style={{ fontSize: "1rem" }}>
-          {" "}
-          had this request on {request.postedOn}
-        </span>
-        <h3>Item: </h3>
-        <input value={request.requestItem} />
-        <button>Edit item</button>
-        <h3>Description: </h3>
-        <input value={request.requestDescription} />
-        <button>Edit description</button>
-        <h3>Location: </h3>
-        <input value={request.location} />
-        <button>Edit location</button>
-      </div>
-      <br></br>
-      <button onClick={handleChange}>Delete request</button>
-      
-      <div className="bg-light py-4"></div>
+      {Auth.loggedIn() && Auth.getProfile().data.email === request.requestBy ? (
+        <div className="my-3">
+          <div className="card-header bg-dark text-light p-2 m-0">
+            <blockquote
+              className="p-4"
+              style={{
+                fontSize: "1.5rem",
+                fontStyle: "italic",
+                border: "2px solid #1a1a1a",
+                lineHeight: "1.5",
+              }}
+            >
+              {request.requestItem}
+            </blockquote>
+            <span style={{ fontSize: "1rem" }}>
+              <strong>You </strong>
+              requested the item on {request.postedOn}
+            </span>
+            <h3>Item: </h3>
+            <input
+              placeholder={request.requestItem}
+              type="text"
+              value={item}
+              onChange={(event) => setItem(event.target.value)}
+            />
+            <button onClick={handleEdits}>Edit item</button>
+            <h3>Description: </h3>
+            <input
+              placeholder={request.requestDescription}
+              type="text"
+              value={description}
+              onChange={(event) => setDescription(event.target.value)}
+            />
+            <button onClick={handleEdits}>Edit description</button>
+            <h3>Location: </h3>
+            <input
+              placeholder={request.location}
+              type="text"
+              value={location}
+              onChange={(event) => setLocation(event.target.value)}
+            />
+            <button onClick={handleEdits}>Edit location</button>
+          </div>
+          <br></br>
+          <button onClick={handleChange}>Delete request</button>
 
-      <h3> {request.request} </h3>
-      <div className="my-5">
-        <CommentList comments={request.comments} />
-      </div>
-      <div className="m-3 p-4" style={{ border: "1px dotted #1a1a1a" }}>
-        <CommentForm requestId={request._id} />
-      </div>
-    </div>
-    ) : (
-      <div className="my-3">
-      <div className="card-header bg-dark text-light p-2 m-0">
-        {request.requestBy} <br />
-        <span style={{ fontSize: "1rem" }}>
-          had this request on {request.postedOn}
-        </span>
-        <h3>{request.requestItem}</h3>
-        <h3>{request.requestDescription}</h3>
-        <h3>{request.location}</h3>
-      </div>
-      <h3>{request.request}</h3>
-      <div className="bg-light py-4">
-        <blockquote
-          className="p-4"
-          style={{
-            fontSize: "1.5rem",
-            fontStyle: "italic",
-            border: "2px dotted #1a1a1a",
-            lineHeight: "1.5",
-          }}
-        >
-          {request.requestItem}
-        </blockquote>
-      </div>
+          <div className="my-5">
+            <CommentList comments={request.comments} />
+          </div>
+          <div className="m-3 p-4" style={{ border: "1px dotted #1a1a1a" }}>
+            <CommentForm requestId={request._id} />
+          </div>
+        </div>
+      ) : (
+        <div className="my-3">
+          <div className="card-header bg-dark text-light p-2 m-0">
+            <blockquote
+              className="p-4"
+              style={{
+                fontSize: "1.5rem",
+                fontStyle: "italic",
+                border: "2px solid #1a1a1a",
+                lineHeight: "1.5",
+              }}
+            >
+              {request.requestItem}
+            </blockquote>
+            <span style={{ fontSize: "1rem" }}>
+              <strong>{request.requestBy} </strong>
+              requested the item on {request.postedOn}
+            </span>
+            <h3>Item: </h3>
+            <h4>{request.requestItem}</h4>
+            <h3>Description: </h3>
+            <h4>{request.requestDescription}</h4>
+            <h3>Location: </h3>
+            <h4>{request.location}</h4>
+          </div>
 
-      <h3> {request.request} </h3>
-      <div className="my-5">
-        <CommentList comments={request.comments} />
-      </div>
-      <div className="m-3 p-4" style={{ border: "1px dotted #1a1a1a" }}>
-        <CommentForm requestId={request._id} />
-      </div>
-    </div>
-    )}
-
+          <div className="my-5">
+            <CommentList comments={request.comments} />
+          </div>
+          <div className="m-3 p-4" style={{ border: "1px dotted #1a1a1a" }}>
+            <CommentForm requestId={request._id} />
+          </div>
+        </div>
+      )}
     </>
   );
 };
