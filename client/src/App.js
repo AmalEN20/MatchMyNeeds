@@ -51,6 +51,7 @@ function App() {
           <Route path='/allrequests' component={AllRequests} />
           <Route path='/signup' component={SignUp} />
           <Route path='/requests/:requestId' component={SingleRequest}/>
+          
         </Switch>
         <Footer />
       </Router>

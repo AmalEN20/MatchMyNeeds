@@ -1,5 +1,5 @@
 import React from "react";
-import RequestPosts from "../components/AllRequests";
+import RequestPosts from "../components/AllRequests/index";
 import { useQuery } from "@apollo/client";
 import { QUERY_REQUESTS } from "../utils/queries";
 
@@ -10,6 +10,9 @@ function AllRequests() {
   return (
     <>
       {loading ? <div>Loading...</div> : 
+          <div className='hero-container'>
+      
+          <img src='/back/back4.jpeg' alt='backimg'/>
        <div>
        <div>
          <h1 className="request">
@@ -20,6 +23,7 @@ function AllRequests() {
          <RequestPosts requests={requests} />
        </div>
 
+     </div>
      </div> }
     </>
   );
