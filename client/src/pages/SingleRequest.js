@@ -46,6 +46,7 @@ const SingleRequest = () => {
         },
       },
       );
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }
@@ -61,6 +62,7 @@ const SingleRequest = () => {
           requestDescription: description,
         },
       });
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }
@@ -76,6 +78,7 @@ const SingleRequest = () => {
           location: location,
         },
       });
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }
