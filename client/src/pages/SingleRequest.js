@@ -135,7 +135,7 @@ const SingleRequest = () => {
             <form onSubmit={handleDescriptionEdits}>
               <div>
               <label style={{ fontSize: "1.5rem", fontWeight: "bold", marginRight: "1rem", display: "flex", paddingLeft: "250px" }}>Description: </label>
-              <input
+              <textarea
                 placeholder={request.requestDescription}
                 type="text"
                 value={description}
@@ -158,7 +158,7 @@ const SingleRequest = () => {
                 type="text"
                 value={location}
                 onChange={(event) => setLocation(event.target.value)}
-                style={{ fontSize: "1.5rem", padding: "0.5rem", border: "none", borderBottom: "2px solid #ccc" }}
+                style={{ fontSize: "1.5rem", padding: "0.5rem", border: "none", borderBottom: "2px solid #ccc",  }}
               />
               </div>
               <div>
@@ -168,13 +168,15 @@ const SingleRequest = () => {
               </div>
             </form>
           </div>
-          <br></br>
+        <div > 
           <HandleDelete />
+        </div>
+
         </div>
       </div>
 
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh",}}>
-        <div style={{ border: "2px solid", textAlign: "center", lineHeight: "3", borderRadius: "10px"}}>
+        <div style={{ border: "2px solid", textAlign: "center", lineHeight: "3", borderRadius: "10px", marginBottom: "-10px"}}>
           <div className="my-5">
       
             <CommentList comments={request.comments} />
@@ -207,23 +209,23 @@ const SingleRequest = () => {
             </blockquote>
             </div>
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh",}}>
-          <div style={{ border: "2px solid", textAlign: "center", lineHeight: "3", borderRadius: "10px", width: "50%", marginBottom: "-50px", marginTop: "-100px" }}>
-            <span style={{ fontSize: "1rem" }}>
+          <div style={{ border: "2px solid", textAlign: "center", lineHeight: "3", borderRadius: "10px", width: "50%", marginBottom: "-50px", marginTop: "130px" }}>
+            <span style={{ fontSize: "1.5rem" }}>
               <strong>{request.requestBy} </strong>
               requested the item on {request.postedOn}
             </span>
-            <h3 style={{ color: 'orange', fontSize: '24px', fontWeight: 'bold', textDecoration: 'underline', textAlign: "center" }}>Item:</h3>
-            <h4>{request.requestItem}</h4>
-            <h3 style={{ color: 'orange', fontSize: '24px', fontWeight: 'bold', textDecoration: 'underline', textAlign: "center" }}>Description: </h3>
-            <h4>{request.requestDescription}</h4>
-            <h3 style={{ color: 'orange', fontSize: '24px', fontWeight: 'bold', textDecoration: 'underline', textAlign: "center" }}>Location: </h3>
-            <h4>{request.location}</h4>
+            <h3 style={{ color: 'orange', fontSize: '1.5rem', fontWeight: 'bold', textDecoration: 'underline', textAlign: "center" }}>Item:</h3>
+            <h4 style={{ fontSize: '1.5rem', fontWeight: 'bold'}}>{request.requestItem}</h4>
+            <h3 style={{ color: 'orange', fontSize: '1.5rem', fontWeight: 'bold', textDecoration: 'underline', textAlign: "center", }}>Description: </h3>
+            <h4 style={{ fontSize: '1.5rem', fontWeight: 'bold', display: "flex", textAlign: "center", justifyContent: "center" }}>{request.requestDescription}</h4>
+            <h3 style={{ color: 'orange', fontSize: '1.5rem', fontWeight: 'bold', textDecoration: 'underline', textAlign: "center" }}>Location: </h3>
+            <h4 style={{ fontSize: '1.5rem', fontWeight: 'bold'}}>{request.location}</h4>
           </div>
         </div>
 
           </div>
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh",}}>
-        <div style={{ border: "2px solid", textAlign: "center", lineHeight: "3", borderRadius: "10px", marginBottom: "100px", marginTop: "-700px", }}>
+        <div style={{ border: "2px solid", textAlign: "center", lineHeight: "3", borderRadius: "10px", marginBottom: "100px", marginTop: "-400px", }}>
           <div className="my-5">
             <CommentList comments={request.comments} />
           </div>
