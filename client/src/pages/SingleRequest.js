@@ -83,6 +83,8 @@ const SingleRequest = () => {
   console.log(description);
   console.log(location);
 
+  
+
   return (
     <>
       {Auth.getProfile().data.email === request.requestBy ? (
@@ -96,11 +98,17 @@ const SingleRequest = () => {
                 border: "2px solid #1a1a1a",
                 lineHeight: "1.5",
                 textAlign: "center",
+                borderRadius: "10px",
+                margin: "13px",
+                marginBottom: "-150px",
+          
               }}
             >
               {request.requestItem}
             </blockquote>
-        <div style={{ border: "2px solid", textAlign: "center", lineHeight: "3",}}>
+          
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh",}}>
+        <div style={{ border: "2px solid", textAlign: "center", lineHeight: "3", borderRadius: "10px", width: "50%", marginBottom: "-150px", }}>
             <span style={{ fontSize: "1.5rem", color: "#ccc" }}>
               You requested the item on {request.postedOn}
             </span>
@@ -118,7 +126,7 @@ const SingleRequest = () => {
                 />
               </div>
               <div>
-                <button onClick={handleItemEdits} type="submit">
+                <button onClick={handleItemEdits} type="submit" style={{ backgroundColor: "orange", color: "white" }}>
                   Edit Item
                 </button>
               </div>
@@ -136,7 +144,7 @@ const SingleRequest = () => {
               />
               </div>
               <div>
-              <button onClick={handleDescriptionEdits} type="submit">
+              <button onClick={handleDescriptionEdits} type="submit" style={{ backgroundColor: "orange", color: "white" }}>
                 Edit Description
               </button>
               </div>
@@ -154,7 +162,7 @@ const SingleRequest = () => {
               />
               </div>
               <div>
-              <button onClick={handleLocationEdits} type="submit">
+              <button onClick={handleLocationEdits} type="submit" style={{ backgroundColor: "orange", color: "white" }}>
                 Edit location
               </button>
               </div>
@@ -163,16 +171,20 @@ const SingleRequest = () => {
           <br></br>
           <HandleDelete />
         </div>
+      </div>
 
-
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh",}}>
+        <div style={{ border: "2px solid", textAlign: "center", lineHeight: "3", borderRadius: "10px"}}>
           <div className="my-5">
       
             <CommentList comments={request.comments} />
           </div>
-          <div className="m-3 p-4" style={{ border: "1px dotted #1a1a1a" }}>
+          <div className="m-3 p-4" style={{ border: "1px dotted #1a1a1a",  }}>
             <CommentForm requestId={request._id} />
           </div>
+          </div>
         </div>
+      </div>
       ) : (
         <div className="my-3">
           <div className="card-header bg-dark text-light p-2 m-0">
