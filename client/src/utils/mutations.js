@@ -44,8 +44,8 @@ export const LOGIN_USER = gql`
 `;
 
 export const UPDATE_REQUEST = gql`
-  mutation updateRequest($requestId: ID!) {
-    updateRequest(requestId: $requestId) {
+  mutation updateRequest($requestId: ID!, $requestItem: String, $requestDescription: String, $location: String) {
+    updateRequest(requestId: $requestId, requestItem: $requestItem, requestDescription: $requestDescription, location: $location) {
       _id
       requestItem
       requestDescription
