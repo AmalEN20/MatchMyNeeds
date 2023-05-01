@@ -86,33 +86,35 @@ const SingleRequest = () => {
   return (
     <>
       {Auth.getProfile().data.email === request.requestBy ? (
-        <div className="my-3">
+        <div className="my-5">
           <div className="card-header bg-dark text-light p-2 m-0">
             <blockquote
               className="p-4"
               style={{
-                fontSize: "1.5rem",
+                fontSize: "2rem",
                 fontStyle: "italic",
                 border: "2px solid #1a1a1a",
                 lineHeight: "1.5",
+                textAlign: "center",
               }}
             >
               {request.requestItem}
             </blockquote>
-            <span style={{ fontSize: "1rem" }}>
-              <strong>You </strong>
-              requested the item on {request.postedOn}
+        <div style={{ border: "2px solid", textAlign: "center", lineHeight: "3",}}>
+            <span style={{ fontSize: "1.5rem", color: "#ccc" }}>
+              You requested the item on {request.postedOn}
             </span>
-            <br></br>
-            <br></br>
             <form onSubmit={handleItemEdits}>
-              <div>
-                <label>Item: </label>
+              <div className="my-3">
+                <label style={{ fontSize: "1.5rem", fontWeight: "bold", marginRight: "1rem", display: "flex", paddingLeft: "280px"}}>
+                  Item:
+                </label>
                 <input
                   placeholder={request.requestItem}
                   type="text"
                   value={item}
                   onChange={(event) => setItem(event.target.value)}
+                  style={{ fontSize: "1.5rem", padding: "0.5rem", border: "none", borderBottom: "2px solid #ccc" }}
                 />
               </div>
               <div>
@@ -124,12 +126,13 @@ const SingleRequest = () => {
             <br></br>
             <form onSubmit={handleDescriptionEdits}>
               <div>
-              <label>Description: </label>
+              <label style={{ fontSize: "1.5rem", fontWeight: "bold", marginRight: "1rem", display: "flex", paddingLeft: "250px" }}>Description: </label>
               <input
                 placeholder={request.requestDescription}
                 type="text"
                 value={description}
                 onChange={(event) => setDescription(event.target.value)}
+                style={{ fontSize: "1.5rem", padding: "0.5rem", border: "none", borderBottom: "2px solid #ccc", }}
               />
               </div>
               <div>
@@ -141,12 +144,13 @@ const SingleRequest = () => {
               <br></br>
             <form onSubmit={handleLocationEdits}>
               <div>
-              <label>Location: </label>
+              <label style={{ fontSize: "1.5rem", fontWeight: "bold", marginRight: "1rem", display: "flex", paddingLeft: "260px" }}>Location: </label>
               <input
                 placeholder={request.location}
                 type="text"
                 value={location}
                 onChange={(event) => setLocation(event.target.value)}
+                style={{ fontSize: "1.5rem", padding: "0.5rem", border: "none", borderBottom: "2px solid #ccc" }}
               />
               </div>
               <div>
@@ -158,8 +162,11 @@ const SingleRequest = () => {
           </div>
           <br></br>
           <HandleDelete />
+        </div>
+
 
           <div className="my-5">
+      
             <CommentList comments={request.comments} />
           </div>
           <div className="m-3 p-4" style={{ border: "1px dotted #1a1a1a" }}>
@@ -176,6 +183,7 @@ const SingleRequest = () => {
                 fontStyle: "italic",
                 border: "2px solid #1a1a1a",
                 lineHeight: "1.5",
+                textAlign: "center",
               }}
             >
               {request.requestItem}
