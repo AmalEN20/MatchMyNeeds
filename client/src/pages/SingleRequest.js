@@ -11,6 +11,7 @@ import { QUERY_SINGLE_REQUEST } from "../utils/queries";
 import Auth from "../utils/auth";
 import { UPDATE_REQUEST } from "../utils/mutations";
 import HandleDelete from "../components/DltRequestBtn/DeleteBtn";
+import "../components/HeroSection/HeroSection"
 
 const SingleRequest = () => {
   // Use `useParams()` to retrieve value of the route parameter `:requestId`
@@ -37,13 +38,14 @@ const SingleRequest = () => {
     event.preventDefault();
 
     try {
-      const data = await updateRequest({
+      const data = await updateRequest(
+        {
         variables: {
           requestId: requestId,
           requestItem: item,
         },
-      });
-
+      },
+      );
     } catch (err) {
       console.error(err);
     }
@@ -79,14 +81,13 @@ const SingleRequest = () => {
     }
   };
 
-  console.log(item);
-  console.log(description);
-  console.log(location);
 
   
 
   return (
-    <>
+    <div className="hero-container">
+            <img src='/back/back4.jpeg' alt='backimg'/>
+
       {Auth.getProfile().data.email === request.requestBy ? (
         <div className="my-5">
           <div className="card-header bg-dark text-light p-2 m-0">
@@ -95,7 +96,6 @@ const SingleRequest = () => {
               style={{
                 fontSize: "2rem",
                 fontStyle: "italic",
-                border: "2px solid #1a1a1a",
                 lineHeight: "1.5",
                 textAlign: "center",
                 borderRadius: "10px",
@@ -106,6 +106,7 @@ const SingleRequest = () => {
             >
               {request.requestItem}
             </blockquote>
+
           
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh",}}>
         <div style={{ border: "2px solid", textAlign: "center", lineHeight: "3", borderRadius: "10px", width: "50%", marginBottom: "-150px", }}>
@@ -197,7 +198,6 @@ const SingleRequest = () => {
               style={{
                 fontSize: "1.5rem",
                 fontStyle: "italic",
-                border: "2px solid #1a1a1a",
                 lineHeight: "1.5",
                 textAlign: "center",
                 borderRadius: "10px",
@@ -212,7 +212,7 @@ const SingleRequest = () => {
           <div style={{ border: "2px solid", textAlign: "center", lineHeight: "3", borderRadius: "10px", width: "50%", marginBottom: "-50px", marginTop: "130px" }}>
             <span style={{ fontSize: "1.5rem" }}>
               <strong>{request.requestBy} </strong>
-              requested the item on {request.postedOn}
+              requested this item on {request.postedOn}.
             </span>
             <h3 style={{ color: 'orange', fontSize: '1.5rem', fontWeight: 'bold', textDecoration: 'underline', textAlign: "center" }}>Item:</h3>
             <h4 style={{ fontSize: '1.5rem', fontWeight: 'bold'}}>{request.requestItem}</h4>
@@ -237,7 +237,7 @@ const SingleRequest = () => {
 
         </div>
       )}
-    </>
+    </div>
   );
 };
 

@@ -39,22 +39,16 @@ const MyRequests = () => {
 
     return (
       <div>
-      <div>
-
-
         <div>
           <RequestForm />
         </div>
-
         <div>
           <h1 style={{ color: 'White', fontSize: '3rem', fontWeight: 'bold', textAlign: "center" }} className="request">
             My Requests
           </h1>
-        </div>
-        <div>
           <RequestPosts requests={user.requests} />
         </div>
-      </div>
+
     </div>
     )
   }

@@ -87,12 +87,13 @@ const resolvers = {
 
     updateRequest: async (parent, { requestId, requestItem, requestDescription, location, reserved, fulfilled }, context) => {
       if (context.user) {
-      const request= Request.findOneAndUpdate(
+      const request= await Request.findOneAndUpdate(
         {_id: requestId},
-        {requestItem, requestDescription, location, reserved, fulfilled},
+        {$set: {requestItem, requestDescription, location, reserved, fulfilled}},
         {new: true}
       )
         return request;
+
     }
       throw new AuthenticationError('You need to be logged in!');
     },
