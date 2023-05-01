@@ -53,7 +53,7 @@ function App() {
           <Route path='/requests/:requestId' component={SingleRequest}/>
           
         </Switch>
-        <Footer />
+
       </Router>
     </ApolloProvider>
   );
