@@ -14,11 +14,19 @@ function AllRequests() {
       
           <img src='/back/back4.jpeg' alt='backimg'/>
        <div>
+
+        
        <div>
-         <h1 className="request">
+         <h1 style={{
+          color: 'white',
+          marginLeft: '21%',
+          marginTop: '100px'
+         }}>
            All Requests
          </h1>
        </div>
+
+
        <div>
          <RequestPosts requests={requests} />
        </div>
