@@ -11,6 +11,7 @@ import { QUERY_SINGLE_REQUEST } from "../utils/queries";
 import Auth from "../utils/auth";
 import { UPDATE_REQUEST } from "../utils/mutations";
 import HandleDelete from "../components/DltRequestBtn/DeleteBtn";
+import "../components/HeroSection/HeroSection"
 
 const SingleRequest = () => {
   // Use `useParams()` to retrieve value of the route parameter `:requestId`
@@ -37,13 +38,15 @@ const SingleRequest = () => {
     event.preventDefault();
 
     try {
-      const data = await updateRequest({
+      console.log("Hi");
+      const data = await updateRequest(
+        {
         variables: {
           requestId: requestId,
           requestItem: item,
         },
-      });
-
+      },
+      );
     } catch (err) {
       console.error(err);
     }
@@ -79,12 +82,11 @@ const SingleRequest = () => {
     }
   };
 
-  console.log(item);
-  console.log(description);
-  console.log(location);
 
   return (
-    <>
+    <div className="hero-container">
+            <img src='/back/back4.jpeg' alt='backimg'/>
+
       {Auth.getProfile().data.email === request.requestBy ? (
         <div className="my-3">
           <div className="card-header bg-dark text-light p-2 m-0">
@@ -93,7 +95,6 @@ const SingleRequest = () => {
               style={{
                 fontSize: "1.5rem",
                 fontStyle: "italic",
-                border: "2px solid #1a1a1a",
                 lineHeight: "1.5",
               }}
             >
@@ -174,7 +175,6 @@ const SingleRequest = () => {
               style={{
                 fontSize: "1.5rem",
                 fontStyle: "italic",
-                border: "2px solid #1a1a1a",
                 lineHeight: "1.5",
               }}
             >
@@ -200,7 +200,7 @@ const SingleRequest = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
