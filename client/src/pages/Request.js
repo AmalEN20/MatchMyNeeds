@@ -11,9 +11,13 @@ import RequestPosts from "../components/AllRequests";
 import RequestForm from "../components/RequestForm/index";
 
 import { QUERY_ME, QUERY_USER } from "../utils/queries";
-
+import Footer from '../components/Footer/Footer';
 
 const MyRequests = () => {
+  const divStyles = {
+    boxShadow: 'inset 0 0 0 1000px rgba(0, 0, 0, 0.2)',
+  };
+
   const { username } = useParams();
 
   const { loading, data } = useQuery(username ? QUERY_USER : QUERY_ME, {
@@ -38,23 +42,19 @@ const MyRequests = () => {
   if (Auth.loggedIn() && Auth.getProfile().data.email === data.me.email) {
 
     return (
-      <div>
-      <div>
-
-
+      
+      <div style={divStyles}>
         <div>
           <RequestForm />
         </div>
-
         <div>
-          <h1 className="request">
+          <h1 style={{ color: 'White', fontSize: '3rem', fontWeight: 'bold', textAlign: "center" }} className="request">
             My Requests
           </h1>
-        </div>
-        <div>
           <RequestPosts requests={user.requests} />
         </div>
-      </div>
+        <Footer />
+
     </div>
     )
   }

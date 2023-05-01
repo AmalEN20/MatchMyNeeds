@@ -14,7 +14,7 @@ img {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+    /* box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2); */
     object-fit: contain;
   }
   
@@ -48,6 +48,22 @@ img {
     margin-left: 4px;
   }
   
+  h1, h3, h4, h5, p {
+    color: #fff;
+  }
+
+  label {
+    color: #fff;
+  }
+
+  blockquote {
+    color: white;
+  }
+
+  span {
+    color: #fff;
+  }
+
   @media screen and (max-width: 960px) {
     .hero-container > h1 {
       font-size: 70px;

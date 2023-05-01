@@ -4,10 +4,15 @@ import { useQuery } from "@apollo/client";
 import { QUERY_REQUESTS } from "../utils/queries";
 
 function AllRequests() {
+  // const divStyles = {
+  //   boxShadow: 'inset 0 0 0 1000px rgba(0, 0, 0, 0.2)',
+
+  // };
   const { loading, data } = useQuery(QUERY_REQUESTS);
   const requests = data?.requests || [];
 
   return (
+    // <div style={divStyles}>
     <>
       {loading ? <div>Loading...</div> : 
           <div className='hero-container'>
@@ -17,13 +22,12 @@ function AllRequests() {
 
         
        <div>
-         <h1 style={{
-          color: 'white',
-          marginLeft: '21%',
-          marginTop: '100px'
-         }}>
+
+         <h1 style={{ color: 'White', fontSize: '3rem', fontWeight: 'bold', textAlign: "center", marginTop:'100px' }}className="request">
+
            All Requests
          </h1>
+
        </div>
 
 
@@ -33,7 +37,9 @@ function AllRequests() {
 
      </div>
      </div> }
+     
     </>
+    // </div>
   );
 }
 

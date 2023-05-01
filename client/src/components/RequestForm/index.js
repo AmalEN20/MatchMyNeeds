@@ -21,10 +21,6 @@ const RequestForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    console.log(item);
-    console.log(location);
-    console.log(description);
-    console.log(Auth.getProfile().data.email);
     //Since mutation function is async, wrap in try...catch to catch any network error
     try {
       //Execute mutation and pass in defined parameter data as variables
