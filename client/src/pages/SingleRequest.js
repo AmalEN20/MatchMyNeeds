@@ -109,7 +109,7 @@ const SingleRequest = () => {
           
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh",}}>
         <div style={{ border: "2px solid", textAlign: "center", lineHeight: "3", borderRadius: "10px", width: "50%", marginBottom: "-150px", }}>
-            <span style={{ fontSize: "1.5rem", color: "#ccc" }}>
+            <span style={{ fontSize: "1.5rem", color: "black" }}>
               You requested the item on {request.postedOn}
             </span>
             <form onSubmit={handleItemEdits}>
@@ -126,7 +126,7 @@ const SingleRequest = () => {
                 />
               </div>
               <div>
-                <button onClick={handleItemEdits} type="submit" style={{ backgroundColor: "orange", color: "white" }}>
+                <button onClick={handleItemEdits} type="submit" style={{ backgroundColor: "orange", color: "black" }}>
                   Edit Item
                 </button>
               </div>
@@ -144,7 +144,7 @@ const SingleRequest = () => {
               />
               </div>
               <div>
-              <button onClick={handleDescriptionEdits} type="submit" style={{ backgroundColor: "orange", color: "white" }}>
+              <button onClick={handleDescriptionEdits} type="submit" style={{ backgroundColor: "orange", color: "black" }}>
                 Edit Description
               </button>
               </div>
@@ -162,7 +162,7 @@ const SingleRequest = () => {
               />
               </div>
               <div>
-              <button onClick={handleLocationEdits} type="submit" style={{ backgroundColor: "orange", color: "white" }}>
+              <button onClick={handleLocationEdits} type="submit" style={{ backgroundColor: "orange", color: "black" }}>
                 Edit location
               </button>
               </div>
@@ -187,7 +187,9 @@ const SingleRequest = () => {
       </div>
       ) : (
         <div className="my-3">
+
           <div className="card-header bg-dark text-light p-2 m-0">
+            <div>
             <blockquote
               className="p-4"
               style={{
@@ -196,28 +198,41 @@ const SingleRequest = () => {
                 border: "2px solid #1a1a1a",
                 lineHeight: "1.5",
                 textAlign: "center",
+                borderRadius: "10px",
+                margin: "13px",
+                marginBottom: "-150px",
               }}
             >
               {request.requestItem}
             </blockquote>
+            </div>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh",}}>
+          <div style={{ border: "2px solid", textAlign: "center", lineHeight: "3", borderRadius: "10px", width: "50%", marginBottom: "-50px", marginTop: "-100px" }}>
             <span style={{ fontSize: "1rem" }}>
               <strong>{request.requestBy} </strong>
               requested the item on {request.postedOn}
             </span>
-            <h3>Item: </h3>
+            <h3 style={{ color: 'orange', fontSize: '24px', fontWeight: 'bold', textDecoration: 'underline', textAlign: "center" }}>Item:</h3>
             <h4>{request.requestItem}</h4>
-            <h3>Description: </h3>
+            <h3 style={{ color: 'orange', fontSize: '24px', fontWeight: 'bold', textDecoration: 'underline', textAlign: "center" }}>Description: </h3>
             <h4>{request.requestDescription}</h4>
-            <h3>Location: </h3>
+            <h3 style={{ color: 'orange', fontSize: '24px', fontWeight: 'bold', textDecoration: 'underline', textAlign: "center" }}>Location: </h3>
             <h4>{request.location}</h4>
           </div>
+        </div>
 
+          </div>
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh",}}>
+        <div style={{ border: "2px solid", textAlign: "center", lineHeight: "3", borderRadius: "10px", marginBottom: "100px", marginTop: "-700px", }}>
           <div className="my-5">
             <CommentList comments={request.comments} />
           </div>
           <div className="m-3 p-4" style={{ border: "1px dotted #1a1a1a" }}>
             <CommentForm requestId={request._id} />
           </div>
+      </div>
+        </div>
+
         </div>
       )}
     </>
