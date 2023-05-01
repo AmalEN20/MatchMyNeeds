@@ -43,7 +43,7 @@ const MyRequests = () => {
           <RequestForm />
         </div>
         <div>
-          <h1 className="request">
+          <h1 style={{ color: 'White', fontSize: '3rem', fontWeight: 'bold', textAlign: "center" }} className="request">
             My Requests
           </h1>
           <RequestPosts requests={user.requests} />
