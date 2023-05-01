@@ -38,7 +38,6 @@ const SingleRequest = () => {
     event.preventDefault();
 
     try {
-      console.log("Hi");
       const data = await updateRequest(
         {
         variables: {
@@ -102,7 +101,7 @@ const SingleRequest = () => {
             </blockquote>
             <span style={{ fontSize: "1rem" }}>
               <strong>You </strong>
-              requested the item on {request.postedOn}
+              requested this item on {request.postedOn}.
             </span>
             <br></br>
             <br></br>
@@ -182,7 +181,7 @@ const SingleRequest = () => {
             </blockquote>
             <span style={{ fontSize: "1rem" }}>
               <strong>{request.requestBy} </strong>
-              requested the item on {request.postedOn}
+              requested this item on {request.postedOn}.
             </span>
             <h3>Item: </h3>
             <h4>{request.requestItem}</h4>

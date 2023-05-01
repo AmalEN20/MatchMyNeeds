@@ -24,7 +24,7 @@
         "requestBy": "david@abc.com",
         "comments": {
             "commentText": "Do you have a color preference?",
-            "commentBy": "ben@abc.com"
+            "commentedBy": "ben@abc.com"
         }
     }
   ]
