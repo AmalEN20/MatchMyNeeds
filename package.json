@@ -8,8 +8,7 @@
     "install": "cd server && npm i && cd ../client && npm i",
     "develop": "concurrently \"cd server && npm run start\" \"cd client && npm run start\"",
     "seed": "cd server && npm run seed",
-    "build": "cd client && npm run build",
-    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress"
+    "build": "cd client && npm run build"
   },
   "keywords": [],
   "author": "",
