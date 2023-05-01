@@ -7,7 +7,8 @@
 - [Description](#description)
 - [User Story](#user-story)
 - [Usage](#usage)
-- [Home Page Screen](#home-page-screen)
+- [Home Page Screenshot](#home-page-screenshot)
+- [Login Page Screenshot](#login-page-screenshot)
 - [Deployed Link](#deployed-link)
 - [Built With](#built-with)
 - [Continued Development](#continued-development)
@@ -27,14 +28,16 @@ As a individual who likes to help people, <br />
 I want to donate my belongings with  others in need, <br />
 so I can recycle an item I no longer have a purpose for.
 
-
 ## Usage
-From the homepage, you can must first make an account to make request or view requests. 
+From the homepage, navigate to the login page by clicking on the top right hand side of the page to first make an account. You will not be able to view or create a request without first signing in. To create an account, the user must make a username, enter their personal email address, and create a unique password. All three entries are required to create an account. Once completed, you can navigate to "My Requests" page or "All Requests" page using the navigation bar. To create a request, the My Request page will contain a request form that will prompt the user to add the name of the item, a short description, as well as the location of the requester. Once they hit submit, they will be able to view their request long with other user requests in the All Requests page. As they scroll through a request and see an item they are interested in fulfilling, the user can simply click on a request that will then navigate to a separate webpage with the detailed information of the request that includes the general location of where the requester is located. If a user has a specific question, they can comment on the post directly to obtain more information on the item. If they are interested in fulfilling the need, they can also reserve the item with a comment on the specified post.
 
-## Home Page Screen
+## Home Page Screenshot
 ![Alt text](screenshots/homepage.png "Homepage")
 
-## Deloyed Link
+## Login Page Screenshot
+![Alt text](screenshots/loginpage.png "Login")
+
+## Deployed Link
 
 ## Built With
 
@@ -59,6 +62,8 @@ We are actively considering the following items for future development:
 * Allowing users to directly message each other privately
 * To do list page with that lists  all requested items a users has marked as “reserved”
 * Allowing users to post a picture of a requested item along with the description text
+* Notifying users when their request has a been commented on
+* Adding shipping and creating shipping labels 
 
 ## Creators
   Betty Lu, Kristina Dukes, Amal Engulatov, and Jordan Dukes
