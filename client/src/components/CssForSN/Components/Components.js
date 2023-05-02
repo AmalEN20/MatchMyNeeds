@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-background-color: #fff;
+background-color: linear-gradient(90deg, rgb(255, 106, 0) 0%, rgb(26, 23, 23) 100%);
 border-radius: 10px;
 box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 position: relative;
@@ -13,6 +13,7 @@ display: block;
 margin-left: auto;
 margin-right: auto;
 margin-top: -250px;
+opacity: 0.9;
 `;
 
 export const SignUpContainer = styled.div`
