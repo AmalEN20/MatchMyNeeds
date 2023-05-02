@@ -14,8 +14,10 @@ import { QUERY_ME, QUERY_USER } from "../utils/queries";
 import Footer from '../components/Footer/Footer';
 
 const MyRequests = () => {
+
   const divStyles = {
     boxShadow: 'inset 0 0 0 1000px rgba(0, 0, 0, 0.2)',
+
   };
 
   const { username } = useParams();
@@ -48,7 +50,7 @@ const MyRequests = () => {
           <RequestForm />
         </div>
         <div>
-          <h1 style={{ color: 'White', fontSize: '3rem', fontWeight: 'bold', textAlign: "center" }} className="request">
+          <h1 style={{ color: 'White', fontSize: '2rem', fontWeight: 'bold', textAlign: "center", marginTop: '-400px' }} className="request">
             My Requests
           </h1>
           <RequestPosts requests={user.requests} />

@@ -111,14 +111,15 @@ const SingleRequest = () => {
             </blockquote>
 
           
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh",}}>
-        <div style={{ border: "2px solid", textAlign: "center", lineHeight: "3", borderRadius: "10px", width: "50%", marginBottom: "-150px", }}>
-            <span style={{ fontSize: "1.5rem", color: "black" }}>
-              You requested the item on {request.postedOn}
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" ,marginTop: "150%"}}>
+        <div style={{ border: "4px solid white ", textAlign: "center",borderRadius:'5px', lineHeight: "3", borderRadius: "10px", width: "50%",  }}>
+            <span style={{ fontSize: "1.5rem", color: "white" }}>
+              You requested the item on  
+              {request.postedOn} 
             </span>
             <form onSubmit={handleItemEdits}>
               <div className="my-3">
-                <label style={{ fontSize: "1.5rem", fontWeight: "bold", marginRight: "1rem", display: "flex", paddingLeft: "280px"}}>
+                <label style={{ fontSize: "1.5rem", fontWeight: "bold", marginRight: "1rem", display: "flex", textAlign: 'center', justifyContent: "center"}}>
                   Item:
                 </label>
                 <input
@@ -138,7 +139,7 @@ const SingleRequest = () => {
             <br></br>
             <form onSubmit={handleDescriptionEdits}>
               <div>
-              <label style={{ fontSize: "1.5rem", fontWeight: "bold", marginRight: "1rem", display: "flex", paddingLeft: "250px" }}>Description: </label>
+              <label style={{ fontSize: "1.5rem", fontWeight: "bold", marginRight: "1rem",  justifyContent: 'center', textAlign: 'center'}}>Description: </label>
               <textarea
                 placeholder={request.requestDescription}
                 type="text"
@@ -156,7 +157,7 @@ const SingleRequest = () => {
               <br></br>
             <form onSubmit={handleLocationEdits}>
               <div>
-              <label style={{ fontSize: "1.5rem", fontWeight: "bold", marginRight: "1rem", display: "flex", paddingLeft: "260px" }}>Location: </label>
+              <label style={{ fontSize: "1.5rem", fontWeight: "bold", marginRight: "1rem", display: "flex", textAlign:'center', justifyContent: 'center'}}>Location: </label>
               <input
                 placeholder={request.location}
                 type="text"
