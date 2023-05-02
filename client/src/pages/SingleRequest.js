@@ -104,6 +104,7 @@ const SingleRequest = () => {
                 borderRadius: "10px",
                 margin: "13px",
                 marginBottom: "-150px",
+
           
               }}
             >
@@ -111,15 +112,14 @@ const SingleRequest = () => {
             </blockquote>
 
           
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" ,marginTop: "150%"}}>
-        <div style={{ border: "4px solid white ", textAlign: "center",borderRadius:'5px', lineHeight: "3", borderRadius: "10px", width: "50%",  }}>
-            <span style={{ fontSize: "1.5rem", color: "white" }}>
-              You requested the item on  
-              {request.postedOn} 
+      <div style={{ display: "flex", justifyContent: "center",borderRadius:'50px', alignItems: "center", height: "100vh" ,marginTop: "150%"}}>
+        <div style={{ border: "3px solid white ", textAlign: "center",borderRadius:'50px', lineHeight: "3", width: "50%",  }}>
+            <span style={{ fontSize: "1.5rem", color: "white", }}>
+              You requested the item on {request.postedOn}
             </span>
             <form onSubmit={handleItemEdits}>
               <div className="my-3">
-                <label style={{ fontSize: "1.5rem", fontWeight: "bold", marginRight: "1rem", display: "flex", textAlign: 'center', justifyContent: "center"}}>
+                <label style={{ fontSize: "1.2rem", fontWeight: "bold", marginRight: "1rem", display: "flex", textAlign: 'center', justifyContent: "center"}}>
                   Item:
                 </label>
                 <input
@@ -127,7 +127,7 @@ const SingleRequest = () => {
                   type="text"
                   value={item}
                   onChange={(event) => setItem(event.target.value)}
-                  style={{ fontSize: "1.5rem", padding: "0.5rem", border: "none", borderBottom: "2px solid #ccc" }}
+                  style={{ fontSize: "1.4rem", padding: "0.5rem", border: "none", borderBottom: "2px solid #ccc" }}
                 />
               </div>
               <div>
@@ -139,17 +139,17 @@ const SingleRequest = () => {
             <br></br>
             <form onSubmit={handleDescriptionEdits}>
               <div>
-              <label style={{ fontSize: "1.5rem", fontWeight: "bold", marginRight: "1rem",  justifyContent: 'center', textAlign: 'center'}}>Description: </label>
+              <label style={{ fontSize: "1.2rem", fontWeight: "bold", marginRight: "1rem",  justifyContent: 'center', textAlign: 'center'}}>Description: </label>
               <textarea
                 placeholder={request.requestDescription}
                 type="text"
                 value={description}
                 onChange={(event) => setDescription(event.target.value)}
-                style={{ fontSize: "1.5rem", padding: "0.5rem", border: "none", borderBottom: "2px solid #ccc", }}
+                style={{ fontSize: "1.1rem", padding: "0.5rem", border: "none", borderBottom: "2px solid #ccc", }}
               />
               </div>
               <div>
-              <button onClick={handleDescriptionEdits} type="submit" style={{ backgroundColor: "orange", color: "black" }}>
+              <button onClick={handleDescriptionEdits} type="submit" style={{backgroundColor: "orange", color: "black", }}>
                 Edit Description
               </button>
               </div>
@@ -157,13 +157,13 @@ const SingleRequest = () => {
               <br></br>
             <form onSubmit={handleLocationEdits}>
               <div>
-              <label style={{ fontSize: "1.5rem", fontWeight: "bold", marginRight: "1rem", display: "flex", textAlign:'center', justifyContent: 'center'}}>Location: </label>
+              <label style={{ fontSize: "1.2rem", fontWeight: "bold", marginRight: "1rem", display: "flex", textAlign:'center', justifyContent: 'center'}}>Location: </label>
               <input
                 placeholder={request.location}
                 type="text"
                 value={location}
                 onChange={(event) => setLocation(event.target.value)}
-                style={{ fontSize: "1.5rem", padding: "0.5rem", border: "none", borderBottom: "2px solid #ccc",  }}
+                style={{ fontSize: "1.4rem", padding: "0.5rem", border: "none", borderBottom: "2px solid #ccc",  }}
               />
               </div>
               <div>
@@ -181,7 +181,7 @@ const SingleRequest = () => {
       </div>
 
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh",}}>
-        <div style={{ border: "2px solid", textAlign: "center", lineHeight: "3", borderRadius: "10px", marginBottom: "-10px"}}>
+        <div style={{ border: "4px solid white", textAlign: "center", lineHeight: "3", borderRadius: "50px", marginBottom: "-10px"}}>
           <div className="my-5">
       
             <CommentList comments={request.comments} />
@@ -212,7 +212,7 @@ const SingleRequest = () => {
               {request.requestItem}
             </blockquote>
             </div>
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh",}}>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", border: "4px solid white ",}}>
           <div style={{ border: "2px solid", textAlign: "center", lineHeight: "3", borderRadius: "10px", width: "50%", marginBottom: "-50px", marginTop: "130px" }}>
             <span style={{ fontSize: "1.5rem" }}>
               <strong>{request.requestBy} </strong>
@@ -227,13 +227,13 @@ const SingleRequest = () => {
           </div>
         </div>
 
-          </div>
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh",}}>
+          </div > 
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", }}>
         <div style={{ border: "2px solid", textAlign: "center", lineHeight: "3", borderRadius: "10px", marginBottom: "100px", marginTop: "-400px", }}>
           <div className="my-5">
             <CommentList comments={request.comments} />
           </div>
-          <div className="m-3 p-4" style={{ border: "1px dotted #1a1a1a" }}>
+          <div className="m-3 p-4" style={{ border: "5px white" }}>
             <CommentForm requestId={request._id} />
           </div>
       </div>

@@ -5,7 +5,8 @@ const RequestPosts = ({requests}) => {
   
 
 if (!requests.length) {
-  return <h3>No Requests Yet</h3>
+  return <h3 style={{color: 'White', fontSize: '2rem', fontWeight: 'bold', textAlign: "center",}}
+  >No Requests Yet</h3>
 }
 
 return (
