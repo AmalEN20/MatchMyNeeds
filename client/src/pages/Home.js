@@ -9,13 +9,13 @@ function Home() {
   };
 
   return (
-    <div style={divStyles}>
+
     <>
       <HeroSection />
       <Footer />
       
     </>
-    </div>
+
   );
 }
 

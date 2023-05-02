@@ -14,6 +14,7 @@ import HandleDelete from "../components/DltRequestBtn/DeleteBtn";
 import "../components/HeroSection/HeroSection"
 
 const SingleRequest = () => {
+  
   // Use `useParams()` to retrieve value of the route parameter `:requestId`
   const { requestId } = useParams();
 
@@ -212,8 +213,8 @@ const SingleRequest = () => {
               {request.requestItem}
             </blockquote>
             </div>
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", border: "4px solid white ",}}>
-          <div style={{ border: "2px solid", textAlign: "center", lineHeight: "3", borderRadius: "10px", width: "50%", marginBottom: "-50px", marginTop: "130px" }}>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", marginTop: '1000px'}}>
+          <div style={{ border: "3px solid white", textAlign: "center", lineHeight: "3", borderRadius: "25px", width: "50%", marginBottom: "-50px", marginTop: "130px" }}>
             <span style={{ fontSize: "1.5rem" }}>
               <strong>{request.requestBy} </strong>
               requested this item on {request.postedOn}.
@@ -229,7 +230,7 @@ const SingleRequest = () => {
 
           </div > 
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", }}>
-        <div style={{ border: "2px solid", textAlign: "center", lineHeight: "3", borderRadius: "10px", marginBottom: "100px", marginTop: "-400px", }}>
+        <div style={{ border: "2px solid white", textAlign: "center", lineHeight: "3", borderRadius: "10px", marginBottom: "100px", marginTop: "-400px", }}>
           <div className="my-5">
             <CommentList comments={request.comments} />
           </div>

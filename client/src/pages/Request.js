@@ -45,7 +45,7 @@ const MyRequests = () => {
 
     return (
       
-      <div style={divStyles}>
+      <div >
         <div>
           <RequestForm />
         </div>
